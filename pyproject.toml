@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tutortrace-ai"
+version = "0.1.0"
+description = "Source-preserving educational document ingestion and evidence retrieval"
+requires-python = ">=3.11,<3.12"
+dependencies = [
+    "streamlit>=1.65,<2",
+    "PyMuPDF>=1.26,<2",
+    "python-pptx>=1.0.2,<2",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8.4,<10"]
+
+[tool.setuptools.packages.find]
+include = ["tutortrace*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --basetemp=data/pytest-tmp"
+pythonpath = ["."]
