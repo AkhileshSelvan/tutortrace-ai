@@ -2,6 +2,7 @@
 
 from pathlib import PurePosixPath
 
+from tutortrace import models
 from tutortrace.errors import DocumentLimitError, InvalidDocumentError, StorageError, TutorTraceError, UnsupportedFileError
 from tutortrace.ingestion.pdf import extract_pdf
 from tutortrace.ingestion.pptx import extract_pptx
@@ -34,14 +35,20 @@ def ingest(store: Store, filename: str, data: bytes) -> IngestionResult:
         if len(data) > MAX_UPLOAD_BYTES:
             raise DocumentLimitError("File exceeds the 50 MiB upload limit.")
         source_type = extension[1:]
+        pipeline_version = models.PIPELINE_VERSION
         existing = store.get_document(document_id)
         if existing:
             if existing.source_type != source_type:
                 raise InvalidDocumentError("These bytes were previously uploaded as a different file type. Use the correct extension.")
-            return store.record_duplicate(existing, filename)
+            if existing.pipeline_version == pipeline_version:
+                return store.record_duplicate(existing, filename)
         extraction = extract_pdf(data) if source_type == "pdf" else extract_pptx(data)
-        chunks = chunk_units(document_id, extraction.units)
-        return store.save_document(document_id, filename, source_type, data, extraction, chunks)
+        chunks = chunk_units(document_id, extraction.units, pipeline_version=pipeline_version)
+        return store.save_document(
+            document_id, filename, source_type, data, extraction, chunks,
+            pipeline_version=pipeline_version,
+            expected_pipeline_version=existing.pipeline_version if existing else None,
+        )
     except StorageError:
         # The database cannot reliably log its own failure; preserve the original error.
         raise

@@ -45,7 +45,8 @@ transitive packages are locked in `requirements.txt`.
   byte count, unit/chunk counts, indexed/empty status, warnings, UTC ingestion time,
   and extractor/chunker pipeline version.
 - `units`: stable document/location-derived ID, parent document ID, one-based
-  location, normalized extracted text. Blank pages/slides are recorded.
+  location, normalized extracted text, nullable PDF-defined `page_label`.
+  Blank pages/slides are recorded; physical location remains canonical.
 - `chunks`: stable pipeline/unit/offset/text-derived ID, parent unit ID, half-open
   offsets `[start, end)`, and exactly that substring of the unit text.
 - `chunks_fts`: SQLite FTS5 external-content index. Triggers keep it in the same
@@ -67,28 +68,53 @@ timeout, kills a timed-out child, and surfaces an explicit error before committi
 This also isolates concurrent sessions from native parser state. See the
 [PyMuPDF multiprocessing guidance](https://pymupdf.readthedocs.io/en/latest/recipes-multiprocessing.html).
 
-Schema version is stored in `PRAGMA user_version`. Unsupported versions are
-rejected. Future schema/extractor changes require an explicit migration/reindex
-strategy; silent mixed-version re-extraction is not implemented.
+Schema version is stored in `PRAGMA user_version`. Fresh databases bootstrap the
+original schema and migrate to version 2 in one transaction. Schema 1 upgrades
+with `ALTER TABLE units ADD COLUMN page_label TEXT`, preserving all old rows and
+IDs. Each migration and its version update run under `BEGIN IMMEDIATE`; startup
+rechecks the version after acquiring the lock. SQL statements are executed
+individually because `executescript` would implicitly commit. Concurrent WAL
+initialization retries SQLite busy/locked errors within a bounded wait. Unknown
+nonempty unversioned databases and unsupported future versions are rejected.
+
+Schema upgrades do not re-extract. Ingestion captures the current pipeline version
+and compares it with the persisted document version. Matching versions only log
+a duplicate attempt. Different versions extract before taking the writer lock,
+then atomically replace units, chunks and FTS entries and update document metadata.
+The original bytes, document ID, filename and ingestion timestamp are retained.
+The transaction rechecks the expected old version to reject stale writers; another
+writer already at the requested version is treated as a duplicate. Failure or
+process exit before commit preserves the complete old evidence. Re-indexing
+retires old chunk IDs and records its version change in ingestion history.
 
 ## Grounding boundary
 
 The UI formats citations exclusively from ledger rows joined through chunk → unit
 → document. `resolve_evidence` accepts only a stored chunk ID. Reads verify the
-unit ID, chunk ID and exact substring offsets. Original downloads and PDF previews
+unit ID, chunk ID (using the document's persisted pipeline version) and exact
+substring offsets. Original downloads and PDF previews
 verify the source BLOB against its SHA-256 document ID. These checks catch accidental
 corruption; they do not constitute a tamper-proof signed database or evaluate
 whether a future model's claims follow logically from the evidence.
 
-Reading order is PyMuPDF top-left text order for PDFs, and presentation shape order
-for PPTX. Whitespace is normalized before chunking; offsets are into this text,
+Reading order is PyMuPDF sorted text-block order for PDFs, and presentation shape
+order for PPTX. PDF extraction enables `TEXT_DEHYPHENATE` and disables
+`TEXT_PRESERVE_LIGATURES`. In the verified PyMuPDF version, plain block output
+can retain line-end hyphens even with that flag, so a bounded fallback joins
+hyphen/newline sequences between letters within each block. It never joins
+blocks or physical pages. `page.get_label()` supplies optional PDF-defined labels;
+no printed labels are inferred. Whitespace is normalized before chunking; offsets are into this text,
 not PDF bytes, coordinates or XML offsets. The original is always available for
 comparison. Every extraction records its visual-understanding limitations.
 
 ## Retrieval behavior
 
-Queries are limited to 1,000 characters / 64 distinct substantive terms. Unicode
-word tokens are individually quoted and OR-combined, then passed as SQL parameters.
+Queries are limited to 1,000 characters / 64 distinct substantive terms. A
+connection-local temporary FTS5 table and `fts5vocab` produce query terms using
+the index's exact `unicode61` configuration, including its case and diacritic
+normalization. Python full casefold is not applied. Terms are deduplicated in
+source order, filtered for English stopwords, individually quoted and OR-combined,
+then passed as SQL parameters.
 Users cannot inject SQL or FTS operators. FTS5 BM25 orders evidence, with stable
 document/location/offset tie-breaks. Optional document scoping and 1–50 result
 limits are enforced. This is lexical retrieval; there is no semantic relevance

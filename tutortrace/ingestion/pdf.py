@@ -3,6 +3,7 @@
 import base64
 import json
 from pathlib import Path
+import re
 import subprocess
 import sys
 
@@ -65,12 +66,20 @@ def _extract_pdf(data: bytes, max_units: int, max_text_chars: int) -> Extraction
                 raise DocumentLimitError(f"PDF exceeds the {max_units}-page limit.")
             units = []
             total = 0
+            flags = (pymupdf.TEXTFLAGS_TEXT | pymupdf.TEXT_DEHYPHENATE) & ~pymupdf.TEXT_PRESERVE_LIGATURES
             for number, page in enumerate(document, 1):
-                text = " ".join(page.get_text("text", sort=True).split())
+                # Some MuPDF versions retain line-end hyphens in serialized text
+                # even with DEHYPHENATE. Join only letter continuations inside a
+                # single text block, never across blocks or physical pages.
+                blocks = page.get_text("blocks", sort=True, flags=flags)
+                text = " ".join("\n".join(
+                    re.sub(r"(?<=[^\W\d_])[-\u00ad][ \t]*\r?\n[ \t]*(?=[^\W\d_])", "", block[4])
+                    for block in blocks if block[6] == 0
+                ).split())
                 total += len(text)
                 if total > max_text_chars:
                     raise DocumentLimitError("Extracted text exceeds the 5-million-character limit.")
-                units.append(ExtractedUnit(number, text))
+                units.append(ExtractedUnit(number, text, page.get_label() or None))
             warnings = ["Text extraction only: images, diagrams and scanned text are not interpreted."]
             if document.is_repaired:
                 warnings.append("PyMuPDF repaired the PDF structure; check extracted text against the original.")

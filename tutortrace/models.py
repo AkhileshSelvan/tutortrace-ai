@@ -5,7 +5,7 @@ from hashlib import sha256
 from typing import Literal
 
 SourceType = Literal["pdf", "pptx"]
-PIPELINE_VERSION = "text-v1:chars-1200:overlap-150"
+PIPELINE_VERSION = "text-v2:pdf-dehyphenate-expand-ligatures-labels:chars-1200:overlap-150"
 
 
 def digest(data: bytes) -> str:
@@ -16,14 +16,15 @@ def unit_identifier(document_id: str, location: int) -> str:
     return digest(f"{document_id}:unit:{location}".encode())
 
 
-def chunk_identifier(unit_id: str, start: int, end: int, text: str) -> str:
-    return digest(f"{PIPELINE_VERSION}:{unit_id}:{start}:{end}:{text}".encode())
+def chunk_identifier(unit_id: str, start: int, end: int, text: str, *, pipeline_version: str) -> str:
+    return digest(f"{pipeline_version}:{unit_id}:{start}:{end}:{text}".encode())
 
 
 @dataclass(frozen=True)
 class ExtractedUnit:
     location: int  # Original one-based page or slide; blank units are retained.
     text: str
+    page_label: str | None = None  # Only PDF-defined labels; never inferred from text.
 
 
 @dataclass(frozen=True)
@@ -59,6 +60,7 @@ class Document:
 class IngestionResult:
     document: Document
     duplicate: bool
+    reindexed: bool = False
 
 
 @dataclass(frozen=True)
@@ -73,9 +75,13 @@ class Evidence:
     end: int
     text: str
     unit_text: str
+    pipeline_version: str
+    page_label: str | None = None
     rank: float | None = None  # SQLite BM25 rank, not confidence/probability.
 
     @property
     def citation(self) -> str:
+        if self.source_type == "pdf" and self.page_label:
+            return f"{self.filename} — PDF page {self.location} (label: {self.page_label})"
         label = "page" if self.source_type == "pdf" else "slide"
         return f"{self.filename}, {label} {self.location}"

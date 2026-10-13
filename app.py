@@ -22,6 +22,10 @@ def ingest_files(store, files):
                 document = result.document
                 if result.duplicate:
                     st.info(f"Already preserved: {document.filename}. No duplicate passages were added.")
+                elif result.reindexed:
+                    st.success(f"Reindexed {document.filename} with the current extraction pipeline: {document.chunk_count} passages.")
+                    if document.status == "empty":
+                        st.warning("Original preserved, but no extractable text was found.")
                 elif document.status == "empty":
                     st.warning(f"{document.filename}: original preserved, but no extractable text was found.")
                 else:
@@ -108,7 +112,7 @@ def main():
                         st.text(evidence.text)
                         with st.expander("Inspect citation and full source text"):
                             resolved = store.resolve_evidence(evidence.chunk_id)
-                            st.text(f"Document ID: {resolved.document_id}\nUnit ID: {resolved.unit_id}\nChunk ID: {resolved.chunk_id}\nText offsets: [{resolved.start}, {resolved.end})")
+                            st.text(f"Document ID: {resolved.document_id}\nUnit ID: {resolved.unit_id}\nChunk ID: {resolved.chunk_id}\nPipeline: {resolved.pipeline_version}\nText offsets: [{resolved.start}, {resolved.end})")
                             st.text(resolved.unit_text)
                             st.caption("Offsets refer to normalized extracted text. Whitespace and reading order may differ from the original layout.")
                         if evidence.source_type == "pdf" and st.button("Preview original page", key=f"preview-{evidence.chunk_id}"):

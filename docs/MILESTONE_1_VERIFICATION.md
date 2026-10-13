@@ -1,5 +1,9 @@
 # Milestone 1 verification and independent-review handoff
 
+Historical record for commit `317a0f2`. See the
+[audit-fix verification](MILESTONE_1_AUDIT_FIX_VERIFICATION.md) for subsequent
+pipeline compatibility, extraction, citation, query and migration corrections.
+
 Verified locally on **13 October 2026 (IST)** in `D:\tutortrace-ai`.
 Implementation and verification completed within the requested approximately
 two-hour timebox. No remote push, deployment, Devpost action, paid API call or

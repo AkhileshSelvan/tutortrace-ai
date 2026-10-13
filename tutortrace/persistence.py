@@ -5,14 +5,16 @@ from datetime import datetime, timezone
 import json
 from pathlib import Path
 import sqlite3
+import time
 
 from tutortrace.errors import ProvenanceError, StorageError
 from tutortrace.models import (
-    PIPELINE_VERSION, Chunk, Document, Evidence, Extraction, IngestionResult,
+    Chunk, Document, Evidence, Extraction, IngestionResult,
     chunk_identifier, digest, unit_identifier,
 )
 
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2
+# Keep the original schema intact as the bootstrap step; upgrades run below.
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS documents (
     id TEXT PRIMARY KEY,
@@ -69,10 +71,52 @@ END;
 PRAGMA user_version = 1;
 """
 
+MIGRATIONS = {2: ("ALTER TABLE units ADD COLUMN page_label TEXT",)}
+
+
+def _enable_wal(connection: sqlite3.Connection):
+    # Journal-mode transitions can return SQLITE_BUSY immediately despite the
+    # connection's busy timeout when two startup connections upgrade a v1 file.
+    deadline = time.monotonic() + 15
+    while True:
+        try:
+            connection.execute("PRAGMA journal_mode = WAL").fetchone()
+            return
+        except sqlite3.OperationalError as exc:
+            if (getattr(exc, "sqlite_errorcode", 0) & 255) not in (sqlite3.SQLITE_BUSY, sqlite3.SQLITE_LOCKED) or time.monotonic() >= deadline:
+                raise
+            time.sleep(0.05)
+
+
+def _migrate(connection: sqlite3.Connection):
+    # Re-read the version only after acquiring the writer lock. Do not use
+    # executescript here: its implicit COMMIT would break atomic migrations.
+    connection.execute("BEGIN IMMEDIATE")
+    version = connection.execute("PRAGMA user_version").fetchone()[0]
+    if version not in range(SCHEMA_VERSION + 1):
+        raise StorageError(f"Database schema {version} is not supported by this application.")
+    if version == 0:
+        if connection.execute("SELECT 1 FROM sqlite_master WHERE name NOT LIKE 'sqlite_%' LIMIT 1").fetchone():
+            raise StorageError("Unversioned nonempty database: refusing to overwrite an unknown schema.")
+        statement = ""
+        for line in SCHEMA.splitlines(keepends=True):
+            statement += line
+            if sqlite3.complete_statement(statement):
+                connection.execute(statement)
+                statement = ""
+        version = 1
+    while version < SCHEMA_VERSION:
+        target = version + 1
+        for statement in MIGRATIONS[target]:
+            connection.execute(statement)
+        connection.execute(f"PRAGMA user_version = {target}")
+        version = target
+
 DOCUMENT_COLUMNS = "id, filename, source_type, byte_size, unit_count, chunk_count, status, warnings, created_at, pipeline_version"
 EVIDENCE_COLUMNS = """
     c.id AS chunk_id, c.unit_id, d.id AS document_id, d.filename,
-    d.source_type, u.location, c.start, c.end, c.text, u.text AS unit_text
+    d.source_type, u.location, c.start, c.end, c.text, u.text AS unit_text,
+    d.pipeline_version, u.page_label
 """
 
 
@@ -92,7 +136,8 @@ def _evidence(row: sqlite3.Row) -> Evidence:
         evidence.unit_id != unit_identifier(evidence.document_id, evidence.location)
         or not 0 <= evidence.start < evidence.end <= len(evidence.unit_text)
         or evidence.text != evidence.unit_text[evidence.start:evidence.end]
-        or evidence.chunk_id != chunk_identifier(evidence.unit_id, evidence.start, evidence.end, evidence.text)
+        or evidence.chunk_id != chunk_identifier(evidence.unit_id, evidence.start, evidence.end, evidence.text,
+                                                pipeline_version=evidence.pipeline_version)
     ):
         raise ProvenanceError("Stored evidence failed its provenance check. Restore or re-ingest the source.")
     return evidence
@@ -105,10 +150,10 @@ class Store:
             self.path.parent.mkdir(parents=True, exist_ok=True)
             with self.connection() as connection:
                 version = connection.execute("PRAGMA user_version").fetchone()[0]
-                if version not in (0, SCHEMA_VERSION):
+                if version not in range(SCHEMA_VERSION + 1):
                     raise StorageError(f"Database schema {version} is not supported by this application.")
-                connection.execute("PRAGMA journal_mode = WAL")
-                connection.executescript(SCHEMA)
+                _enable_wal(connection)
+                _migrate(connection)
         except OSError as exc:
             raise StorageError("Could not create the local data directory. Check available space and permissions.") from exc
 
@@ -168,39 +213,68 @@ class Store:
 
     def record_duplicate(self, document: Document, filename: str) -> IngestionResult:
         with self.connection() as connection:
+            connection.execute("BEGIN IMMEDIATE")
+            row = connection.execute(f"SELECT {DOCUMENT_COLUMNS} FROM documents WHERE id = ?", (document.id,)).fetchone()
+            if row is None or row["pipeline_version"] != document.pipeline_version:
+                raise StorageError("The document changed during ingestion. Please retry the upload.")
             self._attempt(connection, filename, document.id, document.id, "duplicate", "Identical source bytes already preserved.")
-        return IngestionResult(document, duplicate=True)
+        return IngestionResult(_document(row), duplicate=True)
 
     def save_document(self, document_id: str, filename: str, source_type: str, data: bytes,
-                      extraction: Extraction, chunks: list[Chunk]) -> IngestionResult:
+                      extraction: Extraction, chunks: list[Chunk], *, pipeline_version: str,
+                      expected_pipeline_version: str | None) -> IngestionResult:
+        if digest(data) != document_id:
+            raise ProvenanceError("Original bytes do not match the document identity.")
         with self.connection() as connection:
             # Serializes the duplicate check and write across independent app sessions.
             connection.execute("BEGIN IMMEDIATE")
             row = connection.execute(f"SELECT {DOCUMENT_COLUMNS} FROM documents WHERE id = ?", (document_id,)).fetchone()
-            if row:
+            if row and row["pipeline_version"] == pipeline_version:
                 self._attempt(connection, filename, document_id, document_id, "duplicate", "Identical source bytes already preserved.")
                 return IngestionResult(_document(row), duplicate=True)
+            if row and row["pipeline_version"] != expected_pipeline_version:
+                raise StorageError("The document changed during extraction. Please retry the upload.")
             status = "indexed" if chunks else "empty"
             warnings = list(extraction.warnings)
             if not chunks:
                 warnings.append("No extractable text: original preserved, but no searchable passages. OCR is not implemented.")
-            created_at = _now()
-            connection.execute(
-                "INSERT INTO documents VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                (document_id, filename, source_type, data, len(data), len(extraction.units), len(chunks),
-                 status, json.dumps(warnings), created_at, PIPELINE_VERSION),
-            )
-            connection.executemany("INSERT INTO units VALUES (?, ?, ?, ?)", [
-                (unit_identifier(document_id, unit.location), document_id, unit.location, unit.text)
+            created_at = row["created_at"] if row else _now()
+            stored_filename = row["filename"] if row else filename
+            if row:
+                original = connection.execute("SELECT original FROM documents WHERE id = ?", (document_id,)).fetchone()[0]
+                if digest(original) != document_id:
+                    raise ProvenanceError("Stored original failed its SHA-256 integrity check; reindex was not applied.")
+                connection.execute("DELETE FROM chunks WHERE unit_id IN (SELECT id FROM units WHERE document_id = ?)", (document_id,))
+                connection.execute("DELETE FROM units WHERE document_id = ?", (document_id,))
+                connection.execute("""UPDATE documents SET unit_count = ?, chunk_count = ?, status = ?,
+                    warnings = ?, pipeline_version = ? WHERE id = ?""",
+                    (len(extraction.units), len(chunks), status, json.dumps(warnings), pipeline_version, document_id))
+            else:
+                connection.execute(
+                    "INSERT INTO documents VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                    (document_id, filename, source_type, data, len(data), len(extraction.units), len(chunks),
+                     status, json.dumps(warnings), created_at, pipeline_version),
+                )
+            connection.executemany("INSERT INTO units (id, document_id, location, text, page_label) VALUES (?, ?, ?, ?, ?)", [
+                (unit_identifier(document_id, unit.location), document_id, unit.location, unit.text, unit.page_label)
                 for unit in extraction.units
             ])
             connection.executemany("INSERT INTO chunks VALUES (?, ?, ?, ?, ?)", [
                 (chunk.id, chunk.unit_id, chunk.start, chunk.end, chunk.text) for chunk in chunks
             ])
-            self._attempt(connection, filename, document_id, document_id, status, f"Preserved {len(extraction.units)} source units; indexed {len(chunks)} passages.")
-            document = Document(document_id, filename, source_type, len(data), len(extraction.units),
-                                len(chunks), status, tuple(warnings), created_at, PIPELINE_VERSION)
-            return IngestionResult(document, duplicate=False)
+            action = f"Reindexed from {row['pipeline_version']} to {pipeline_version}. " if row else ""
+            self._attempt(connection, filename, document_id, document_id, status, action + f"Preserved {len(extraction.units)} source units; indexed {len(chunks)} passages.")
+            document = Document(document_id, stored_filename, source_type, len(data), len(extraction.units),
+                                len(chunks), status, tuple(warnings), created_at, pipeline_version)
+            return IngestionResult(document, duplicate=False, reindexed=row is not None)
+
+    def query_terms(self, query: str) -> list[str]:
+        """Tokenize with the exact same FTS5 configuration as the durable index."""
+        with self.connection() as connection:
+            connection.execute("CREATE VIRTUAL TABLE temp.query_tokens USING fts5(text, tokenize='unicode61')")
+            connection.execute("CREATE VIRTUAL TABLE temp.query_vocab USING fts5vocab(temp, query_tokens, instance)")
+            connection.execute("INSERT INTO temp.query_tokens(text) VALUES (?)", (query,))
+            return [row[0] for row in connection.execute("SELECT term FROM temp.query_vocab ORDER BY offset")]
 
     def resolve_evidence(self, chunk_id: str) -> Evidence:
         with self.connection() as connection:

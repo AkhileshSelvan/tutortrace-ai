@@ -62,11 +62,26 @@ It does not simulate an operating-system file picker.
 - SHA-256 of original bytes identifies a document; renaming a file does not
   duplicate it. Different bytes with the same filename remain separate documents.
 - Source units retain one-based **physical** PDF page / PPTX slide numbers,
-  including blanks. Printed page labels are not used.
+  including blanks. PDF-defined page labels are displayed alongside physical
+  pages, for example `chapter.pdf — PDF page 3 (label: 1)`. Labels are never
+  guessed from printed text; PDFs without label metadata use physical pages only.
 - Chunks never span pages/slides. Their stable IDs include the unit ID,
   pipeline version, normalized text and character offsets.
+- Evidence is verified against its document's persisted pipeline version. Older
+  evidence remains searchable after an application upgrade. Re-uploading identical
+  bytes from an older pipeline atomically replaces its extraction and index while
+  preserving the document ID, original, filename and original ingestion time.
+  Current-version duplicates leave evidence unchanged and only log the attempt.
+- Database schema 1 upgrades automatically to schema 2 using transactional
+  `PRAGMA user_version` migrations. Migration preserves existing text and IDs;
+  re-upload is needed to apply new extraction and populate older PDF page labels.
+- PDF extraction expands ligatures and joins letter continuations at line-end
+  hyphens within a text block. Original bytes remain unchanged; unusual layouts
+  and genuinely hyphenated compounds still need source inspection.
 - Search uses SQLite FTS5 and BM25 keyword ranking. Results are passages, not
   generated answers, semantic matches, or probabilities of correctness.
+  Queries use the same `unicode61` tokenizer as the index, avoiding Python
+  casefold mismatches. This is not complete multilingual or transliteration support.
 - Valid files with no extracted text have `empty` status: originals and metadata
   are preserved, but no passages are indexed. Invalid uploads record failure
   metadata; their bytes are not retained. If storage itself fails, history cannot
@@ -81,6 +96,7 @@ local databases, credentials and environments are excluded from source control.
 - [Architecture](docs/ARCHITECTURE.md)
 - [Known limitations](docs/KNOWN_LIMITATIONS.md)
 - [Verification record and review handoff](docs/MILESTONE_1_VERIFICATION.md)
+- [Milestone 1 audit fixes and verification](docs/MILESTONE_1_AUDIT_FIX_VERIFICATION.md)
 - [AI assistance and third-party attribution](docs/AI_DISCLOSURE.md)
 - [Sample material provenance](demo_assets/README.md)
 - [Original project blueprint](docs/TutorTrace_AI_First_Place_Blueprint.md)
