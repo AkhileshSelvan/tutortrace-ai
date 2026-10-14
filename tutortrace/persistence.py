@@ -285,6 +285,18 @@ class Store:
             raise ProvenanceError("The requested passage does not exist in the source ledger.")
         return _evidence(row)
 
+    def evidence_candidates(self, document_ids: tuple[str, ...] = (), limit: int = 501) -> list[Evidence]:
+        """Bounded corpus view for optional semantic retrieval; same provenance checks."""
+        if not 1 <= limit <= 5001:
+            raise ValueError("Invalid evidence candidate limit")
+        parameters = list(document_ids)
+        scope = "WHERE d.id IN (" + ",".join("?" for _ in document_ids) + ")" if document_ids else ""
+        with self.connection() as connection:
+            rows = connection.execute(f"""SELECT {EVIDENCE_COLUMNS}
+                FROM chunks c JOIN units u ON c.unit_id = u.id JOIN documents d ON u.document_id = d.id
+                {scope} ORDER BY d.id, u.location, c.start LIMIT ?""", [*parameters, limit]).fetchall()
+        return [_evidence(row) for row in rows]
+
     def search(self, expression: str, limit: int, document_id: str | None = None) -> list[Evidence]:
         parameters: list = [expression]
         document_filter = ""

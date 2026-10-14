@@ -1,4 +1,4 @@
-# Known limitations — Milestone 1
+# Known limitations — Milestone 2
 
 - PDF/PPTX text only. No video/audio, OCR, vision models, image/diagram interpretation,
   embedded chart semantics, PPTX speaker notes or animation semantics. Scanned PDFs
@@ -12,8 +12,9 @@
   remove a genuine compound-word hyphen at a line break. Separate blocks/pages
   are never joined. This is a bounded extraction heuristic, not language-aware
   spelling correction. Ligature expansion depends on the font's text mapping.
-- Keyword search with English stopwords, OR matching and SQLite Unicode tokenization;
-  no embeddings, synonyms, stemming, reranker, topic model or semantic threshold.
+- The original search interface uses keywords, English stopwords and OR matching.
+  The AI Tutor additionally offers optional local embedding retrieval and rank fusion;
+  neither path has a learned reranker, topic model or calibrated confidence score.
   Broad queries can return weakly relevant passages. No-result search is not proof
   that the material lacks an answer. BM25 is not confidence.
 - Query normalization now uses the same SQLite `unicode61` tokenizer as the index.
@@ -21,16 +22,43 @@
   complete multilingual support is not claimed. There is no language-specific
   segmentation, locale-aware casing or transliteration (`Straße` does not match
   `strasse`). English stopwords still apply to all queries.
-- Chunk overlap can return similar passages from the same page. Search does not
+- Chunk overlap can return similar passages from the same page. Original search does not
   deduplicate nearby hits. Long unbroken strings can be split inside a word.
+  Tutor context suppresses redundant windows but can still include adjacent passages.
 - Byte-identical duplicate detection only. Regenerating/resaving a PDF or PPTX can
   change its hash even if the content looks identical.
 - Original PDFs can be previewed at the exact page. PPTX citations expose the
   original slide number and extracted text; no rendered slide preview or automatic
   navigation inside PowerPoint is implemented.
-- No LLM implementation or generated responses. The provider protocol is an
-  extension point, not a tested model integration. No quizzes, learner mastery,
-  adaptive tutoring, learning outcome measurements or external benchmarks yet.
+- The AI Tutor generates source-constrained explanations; citation/quote validation
+  does not prove every claim is semantically supported. A model can misinterpret a
+  valid quote, miss a contradiction, or mishandle an adversarial document. Unsupported
+  aspects and abstention rely partly on model judgment. No independent entailment
+  model or formal guarantee of faithfulness is implemented.
+- Local CPU inference can take tens of seconds and may fail under memory pressure.
+  Availability checks confirm installation, not successful generation. A socket
+  timeout does not guarantee immediate cancellation of server-side computation.
+  The app never downloads models or stops unrelated processes automatically.
+- Semantic retrieval defaults to 500 corpus passages, a heuristic cosine threshold
+  and a persistent embedding cache. Larger selections explicitly fall back to
+  keyword retrieval; they are not silently sampled. Cache entries are not pruned
+  automatically. Context character limits are not tokenizer-exact limits; reduce
+  context for small models and unusually token-dense text.
+- In the recorded diagnostic set, hybrid retrieval selected more irrelevant source
+  units than keyword retrieval (label precision 14/26 versus 14/21). A separate
+  no-keyword paraphrase probe recovered the relevant power slide at rank 2, behind
+  an irrelevant passage. Semantic retrieval is therefore opt-in, not advertised
+  as an across-the-board accuracy improvement.
+- The real model sometimes lists unasked topics in `unsupported_aspects`. These
+  are visibly labelled as not established, not accepted factual answer claims.
+  Explicit abstentions discard all accompanying generated claims and citations;
+  this conservative behavior can also discard a usable answer.
+- The remote OpenAI-compatible adapter is contract-tested with synthetic responses;
+  no live remote provider was tested with credentials. API variations may require
+  adapter changes. Remote use sends selected excerpts and the question to that service.
+- Chat answers are session-local and are not a persistent conversation or learner
+  model. No quizzes, mastery tracking, adaptive personalization, learning-outcome
+  measurements or independent external benchmark is implemented.
 - No accounts, auth, encryption at rest, deletion UI, backups UI, or multi-tenant
   security. Use only as a loopback/local app. The database includes original uploads.
 - Parsing is synchronous. PDFs use separate processes with a 60-second timeout;
@@ -58,5 +86,5 @@
 - PyMuPDF has AGPL/commercial license terms. No repository-wide distribution license
   has been chosen here; dependency licensing must be reviewed before distribution.
 
-See `MILESTONE_1_AUDIT_FIX_VERIFICATION.md` for current executed checks and
-`MILESTONE_1_VERIFICATION.md` for the historical baseline.
+See `MILESTONE_2_VERIFICATION.md` for current checks and measurements, and the
+Milestone 1 verification documents for historical baselines.

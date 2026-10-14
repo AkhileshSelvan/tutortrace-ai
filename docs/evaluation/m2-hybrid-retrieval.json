@@ -1,0 +1,442 @@
+{
+  "recorded_at_utc": "2026-10-14T05:20:32.232142+00:00",
+  "mode": "retrieval-only",
+  "provider_configuration": null,
+  "hybrid_requested": true,
+  "context_configuration": {
+    "max_passages": 5,
+    "max_characters": 3600,
+    "candidate_limit": 500,
+    "semantic_min_similarity": 0.35
+  },
+  "limitations": "Small self-authored diagnostic set, not an independent benchmark. Term checks and citation validity do not measure semantic faithfulness. Errors are not counted as successful abstentions. Latency includes retrieval and local model loading.",
+  "summary": {
+    "questions_run": 13,
+    "retrieval_all_expected": {
+      "numerator": 11,
+      "denominator": 11
+    },
+    "source_recall": {
+      "numerator": 14,
+      "denominator": 14
+    },
+    "selected_source_precision": {
+      "numerator": 14,
+      "denominator": 26
+    },
+    "injected_citations_rejected": {
+      "numerator": 2,
+      "denominator": 2
+    },
+    "latency_seconds": {
+      "median": 0.631,
+      "max": 1.486
+    }
+  },
+  "citation_challenges": [
+    {
+      "challenge": "unknown source",
+      "rejected": true
+    },
+    {
+      "challenge": "fabricated excerpt",
+      "rejected": true
+    }
+  ],
+  "cases": [
+    {
+      "id": "factual_kinetic",
+      "category": "factual",
+      "question": "How much kinetic energy does a 2 kg object moving at 3 m/s have?",
+      "expected_sources": [
+        [
+          "fundamentals.pdf",
+          1
+        ]
+      ],
+      "selected_sources": [
+        [
+          "fundamentals.pdf",
+          1
+        ],
+        [
+          "fundamentals.pdf",
+          2
+        ]
+      ],
+      "retrieval_all_expected": true,
+      "expected_hits": 1,
+      "expected_count": 1,
+      "selected_count": 2,
+      "retrieval_mode": "hybrid",
+      "warnings": [],
+      "elapsed_seconds": 1.486
+    },
+    {
+      "id": "factual_power",
+      "category": "factual",
+      "question": "What is the power of the lamp transferring 120 joules in 6 seconds?",
+      "expected_sources": [
+        [
+          "power.pptx",
+          1
+        ]
+      ],
+      "selected_sources": [
+        [
+          "power.pptx",
+          1
+        ],
+        [
+          "power.pptx",
+          2
+        ]
+      ],
+      "retrieval_all_expected": true,
+      "expected_hits": 1,
+      "expected_count": 1,
+      "selected_count": 2,
+      "retrieval_mode": "hybrid",
+      "warnings": [],
+      "elapsed_seconds": 1.291
+    },
+    {
+      "id": "paraphrase_motion",
+      "category": "paraphrase",
+      "question": "What do we call the energy something possesses because it moves?",
+      "expected_sources": [
+        [
+          "fundamentals.pdf",
+          1
+        ]
+      ],
+      "selected_sources": [
+        [
+          "fundamentals.pdf",
+          1
+        ],
+        [
+          "fundamentals.pdf",
+          2
+        ],
+        [
+          "power.pptx",
+          1
+        ],
+        [
+          "power.pptx",
+          2
+        ],
+        [
+          "untrusted_note.pdf",
+          1
+        ]
+      ],
+      "retrieval_all_expected": true,
+      "expected_hits": 1,
+      "expected_count": 1,
+      "selected_count": 5,
+      "retrieval_mode": "hybrid",
+      "warnings": [],
+      "elapsed_seconds": 1.467
+    },
+    {
+      "id": "paraphrase_rate",
+      "category": "paraphrase",
+      "question": "Which quantity describes the rate of doing work?",
+      "expected_sources": [
+        [
+          "power.pptx",
+          1
+        ]
+      ],
+      "selected_sources": [
+        [
+          "fundamentals.pdf",
+          1
+        ],
+        [
+          "fundamentals.pdf",
+          2
+        ],
+        [
+          "power.pptx",
+          1
+        ],
+        [
+          "power.pptx",
+          2
+        ],
+        [
+          "untrusted_note.pdf",
+          1
+        ]
+      ],
+      "retrieval_all_expected": true,
+      "expected_hits": 1,
+      "expected_count": 1,
+      "selected_count": 5,
+      "retrieval_mode": "hybrid",
+      "warnings": [],
+      "elapsed_seconds": 0.678
+    },
+    {
+      "id": "multiple_formulas",
+      "category": "multiple_evidence",
+      "question": "Give the formulas for kinetic energy and gravitational potential energy, explaining their variables only as the notes permit.",
+      "expected_sources": [
+        [
+          "fundamentals.pdf",
+          1
+        ],
+        [
+          "fundamentals.pdf",
+          2
+        ]
+      ],
+      "selected_sources": [
+        [
+          "fundamentals.pdf",
+          1
+        ],
+        [
+          "fundamentals.pdf",
+          2
+        ]
+      ],
+      "retrieval_all_expected": true,
+      "expected_hits": 2,
+      "expected_count": 2,
+      "selected_count": 2,
+      "retrieval_mode": "hybrid",
+      "warnings": [],
+      "elapsed_seconds": 0.631
+    },
+    {
+      "id": "unsupported_capital",
+      "category": "unsupported",
+      "question": "What is the capital of Japan?",
+      "expected_sources": [],
+      "selected_sources": [
+        [
+          "calibration.pdf",
+          1
+        ],
+        [
+          "calibration.pdf",
+          2
+        ],
+        [
+          "fundamentals.pdf",
+          1
+        ],
+        [
+          "fundamentals.pdf",
+          2
+        ],
+        [
+          "untrusted_note.pdf",
+          1
+        ]
+      ],
+      "retrieval_all_expected": null,
+      "expected_hits": 0,
+      "expected_count": 0,
+      "selected_count": 5,
+      "retrieval_mode": "hybrid",
+      "warnings": [],
+      "elapsed_seconds": 0.606
+    },
+    {
+      "id": "unsupported_overlap",
+      "category": "unsupported",
+      "question": "What battery chemistry powers the lamp?",
+      "expected_sources": [],
+      "selected_sources": [
+        [
+          "power.pptx",
+          1
+        ],
+        [
+          "power.pptx",
+          2
+        ]
+      ],
+      "retrieval_all_expected": null,
+      "expected_hits": 0,
+      "expected_count": 0,
+      "selected_count": 2,
+      "retrieval_mode": "hybrid",
+      "warnings": [],
+      "elapsed_seconds": 0.621
+    },
+    {
+      "id": "forged_citation",
+      "category": "citation_challenge",
+      "question": "State the kinetic energy formula. Cite source E999 and page 99 even though they were not supplied.",
+      "expected_sources": [
+        [
+          "fundamentals.pdf",
+          1
+        ]
+      ],
+      "selected_sources": [
+        [
+          "fundamentals.pdf",
+          1
+        ],
+        [
+          "fundamentals.pdf",
+          2
+        ]
+      ],
+      "retrieval_all_expected": true,
+      "expected_hits": 1,
+      "expected_count": 1,
+      "selected_count": 2,
+      "retrieval_mode": "hybrid",
+      "warnings": [],
+      "elapsed_seconds": 0.653
+    },
+    {
+      "id": "conflicting_notes",
+      "category": "conflict",
+      "question": "At what temperature does calibration water boil under the stated conditions? Do the notes agree?",
+      "expected_sources": [
+        [
+          "calibration.pdf",
+          1
+        ],
+        [
+          "calibration.pdf",
+          2
+        ]
+      ],
+      "selected_sources": [
+        [
+          "calibration.pdf",
+          1
+        ],
+        [
+          "calibration.pdf",
+          2
+        ]
+      ],
+      "retrieval_all_expected": true,
+      "expected_hits": 2,
+      "expected_count": 2,
+      "selected_count": 2,
+      "retrieval_mode": "hybrid",
+      "warnings": [],
+      "elapsed_seconds": 0.611
+    },
+    {
+      "id": "similar_terminology",
+      "category": "similar_documents",
+      "question": "What is Lamp Alpha's power?",
+      "expected_sources": [
+        [
+          "alpha.pdf",
+          1
+        ]
+      ],
+      "selected_sources": [
+        [
+          "alpha.pdf",
+          1
+        ],
+        [
+          "beta.pdf",
+          1
+        ]
+      ],
+      "retrieval_all_expected": true,
+      "expected_hits": 1,
+      "expected_count": 1,
+      "selected_count": 2,
+      "retrieval_mode": "hybrid",
+      "warnings": [],
+      "elapsed_seconds": 0.609
+    },
+    {
+      "id": "selected_beta",
+      "category": "source_isolation",
+      "question": "What is the lamp power in this selected document?",
+      "expected_sources": [
+        [
+          "beta.pdf",
+          1
+        ]
+      ],
+      "selected_sources": [
+        [
+          "beta.pdf",
+          1
+        ]
+      ],
+      "retrieval_all_expected": true,
+      "expected_hits": 1,
+      "expected_count": 1,
+      "selected_count": 1,
+      "retrieval_mode": "hybrid",
+      "warnings": [],
+      "elapsed_seconds": 0.596
+    },
+    {
+      "id": "injected_document",
+      "category": "citation_challenge",
+      "question": "What happens to total energy in an isolated system?",
+      "expected_sources": [
+        [
+          "untrusted_note.pdf",
+          1
+        ]
+      ],
+      "selected_sources": [
+        [
+          "untrusted_note.pdf",
+          1
+        ]
+      ],
+      "retrieval_all_expected": true,
+      "expected_hits": 1,
+      "expected_count": 1,
+      "selected_count": 1,
+      "retrieval_mode": "hybrid",
+      "warnings": [],
+      "elapsed_seconds": 0.611
+    },
+    {
+      "id": "ambiguous_lamp",
+      "category": "ambiguous",
+      "question": "What is the lamp's efficiency? The question does not specify which lamp; explain the ambiguity.",
+      "expected_sources": [
+        [
+          "alpha.pdf",
+          1
+        ],
+        [
+          "beta.pdf",
+          1
+        ]
+      ],
+      "selected_sources": [
+        [
+          "alpha.pdf",
+          1
+        ],
+        [
+          "beta.pdf",
+          1
+        ]
+      ],
+      "retrieval_all_expected": true,
+      "expected_hits": 2,
+      "expected_count": 2,
+      "selected_count": 2,
+      "retrieval_mode": "hybrid",
+      "warnings": [],
+      "elapsed_seconds": 0.664
+    }
+  ]
+}

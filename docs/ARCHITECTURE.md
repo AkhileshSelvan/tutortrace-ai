@@ -1,4 +1,4 @@
-# Milestone 1 architecture
+# TutorTrace architecture — Milestone 2
 
 The smallest viable design is a local Streamlit process plus SQLite and short-lived
 PDF worker processes. No
@@ -14,8 +14,9 @@ Streamlit app.py
   ├── persistence.Store → SQLite ledger + originals + FTS5
   └── retrieval.search → ranked Evidence → source inspector / original preview
 
-Future AnswerProvider ← question + retrieved Evidence
-Future caller must validate returned chunk IDs through Store.resolve_evidence.
+AI Tutor → retrieval.context → selected Evidence → AnswerProvider.complete
+         → tutoring.validate_answer → claims with canonical source metadata
+Optional semantic retrieval → local Ollama embeddings → disposable SQLite cache
 ```
 
 ## Module responsibilities
@@ -31,7 +32,11 @@ Future caller must validate returned chunk IDs through Store.resolve_evidence.
 | `retrieval/chunking.py` | 1,200-character windows, up to 150 characters of overlap, per unit |
 | `persistence.py` | SQLite schema, transactions, originals, history, FTS queries and evidence resolution |
 | `retrieval/search.py` | Bounded literal search terms and common English stopword removal |
-| `providers/llm.py` | Future inference contract only; no configured provider or generated answer |
+| `providers/llm.py` | Provider-neutral completion/status contract, configuration and typed failures |
+| `providers/adapters.py`, `providers/http.py` | Real Ollama / OpenAI-compatible HTTP inference, bounded responses and safe errors |
+| `retrieval/context.py` | Scoped retrieval, optional local embeddings, reciprocal-rank fusion, deduplication and context limits |
+| `tutoring.py` | Question orchestration, structured output, per-claim citation and exact-quote validation |
+| `tutor_ui.py` | Provider status, questions, explicit answer/abstention/error states and source inspection |
 | `app.py` | Uploads, status, library, retrieval, provenance and original inspection |
 
 Standard-library dataclasses avoid adding Pydantic solely for internal records.
@@ -118,7 +123,59 @@ then passed as SQL parameters.
 Users cannot inject SQL or FTS operators. FTS5 BM25 orders evidence, with stable
 document/location/offset tie-breaks. Optional document scoping and 1–50 result
 limits are enforced. This is lexical retrieval; there is no semantic relevance
-threshold, answer inference or automatic abstention judgement.
+threshold in the original search interface. The separate tutor context selector
+builds on this unchanged search behavior.
+
+## Tutor and provider boundary
+
+The tutor accepts a question, optional document IDs, a context configuration and
+a provider. FTS results retain their existing source objects. Optional semantic
+retrieval scans at most 500 passages by default (configurable up to 5,000), embeds
+with the local model and filters cosine similarity below 0.35. It refuses to
+silently scan a truncated corpus; oversized scopes fall back to keyword retrieval
+with a warning. Reciprocal-rank fusion uses `1 / (60 + rank)`. Redundant windows
+within the same source unit are suppressed; identical text in distinct sources
+remains attributable to each source. Defaults select at most five complete chunks
+and 3,600 source characters. These are character limits, not exact token counts.
+
+Embeddings live in a separate `<ledger>.embeddings.sqlite3` cache keyed by model
+identity/digest, chunk ID and text hash. Re-indexed chunk IDs and changed model
+digests cannot reuse old entries. Unused historical entries are not automatically
+pruned. Vectors never replace canonical source metadata. The source ledger's
+schema and pipeline version remain unchanged at M1.1 values.
+
+The model receives the question, excerpts, request-local aliases `E1`, `E2`, etc.,
+and a JSON response schema. Aliases map only to this question's immutable evidence
+snapshot. It returns short claims with supporting aliases and exact quotes,
+unsupported aspects, and answered/abstained/conflict status. The system prompt
+treats source text and user questions as untrusted data and prohibits filling gaps
+from general knowledge. This is mitigation, not a proof of prompt-injection immunity.
+
+Before display, the validator rejects unknown aliases, invented excerpts, missing
+support, invalid structure and inconsistent status. Each cited chunk is resolved
+again through the existing provenance verifier and compared with its snapshot,
+detecting re-indexing or changed metadata during inference. Citation names,
+physical locations, labels and downloads come only from ledger records. A conflict
+requires at least two distinct cited passages. Citation validity is deliberately
+not presented as semantic entailment verification.
+
+An explicit model abstention is conservative: any accompanying claims and their
+citations are withheld in full, with a visible explanation. They are never
+reinterpreted as an answer. The strict validator still checks the retained
+structure and every claim that could actually be displayed.
+
+Ollama runs locally with temperature 0, seed 17, thinking disabled, bounded output,
+4,096 context tokens and a 120-second socket timeout by default. Installed cloud
+aliases are rejected by the local adapter. No automatic model downloads or provider
+switches occur. The remote adapter requires explicit HTTPS configuration and an
+API credential. Redirects are rejected, local HTTP bypasses proxies, response size
+is bounded, and provider error bodies/credentials are not shown. Remote compatibility
+varies by service; live remote inference has not been credential-tested here.
+
+No retrieval results means deterministic abstention without inference. Model
+abstention is distinguished from provider or validation failure. Failures never
+produce substitute answers. The app stores the current answer in its Streamlit
+session only; source and embedding persistence are independent of chat state.
 
 Primary implementation references: [SQLite FTS5](https://www.sqlite.org/fts5.html)
 and [PyMuPDF text extraction](https://pymupdf.readthedocs.io/en/latest/app1.html).

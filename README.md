@@ -2,11 +2,13 @@
 
 Track D — Personalized Tutoring & Adaptive Learning, Multimodal AI Hackathon 2026.
 
-**Milestone 1:** a local PDF/PPTX evidence library. Upload educational materials,
-search extracted text, inspect exact page/slide citations, preview PDF pages, and
-download the byte-identical original. No LLM, API key, GPU, or paid service is needed.
-Tutoring, assessments, mastery tracking, video ingestion and visual understanding
-are future milestones, not current features.
+**Milestone 2:** a PDF/PPTX evidence library and source-grounded AI tutor. Upload educational materials,
+search extracted text, inspect exact page/slide citations, preview PDF pages,
+download the byte-identical original, and ask a configured model questions about
+selected documents. Retrieval alone needs no model or API key. Local AI uses
+Ollama; remote inference requires separately supplied API credentials.
+Assessments, mastery tracking, video ingestion and visual understanding remain
+future milestones.
 
 ## Install and run (Windows PowerShell, Python 3.11)
 
@@ -38,12 +40,64 @@ For the existing prepared environment, just run the last command. Open
 5. Preview an original PDF page. For PowerPoint, download the original and open
    the displayed slide number in a presentation viewer.
 
+## AI Tutor
+
+Start the installed Ollama service (`ollama serve` if it is not already running).
+The verified local defaults use **qwen3:4b** for generation and, optionally,
+**nomic-embed-text:latest** for semantic retrieval. Check `ollama list` first;
+missing models produce an explicit error, never an automatic download. CPU
+inference works on the tested 16 GB machine but can take tens of seconds.
+
+1. Open **AI Tutor** below the library and search interface.
+2. Use **Check model status**. This checks installation, not a guarantee of enough
+   memory or successful inference.
+3. Select one or several documents as a course; empty selection searches all.
+4. Ask a question and inspect each statement's source and exact supporting quote.
+5. Open the cited physical PDF page, or download the PPTX and open the shown slide.
+
+The model can cite only evidence supplied for that question. Invalid IDs, invented
+quotes, malformed responses and contradictory response structures are rejected.
+If the model explicitly abstains but emits accompanying claims, all those claims
+and citations are withheld and the UI says so.
+Empty retrieval always abstains; the model is instructed to abstain when selected
+evidence cannot answer. Inference failures show an error with retrieved excerpts
+available for inspection. **Valid citations and quotes do not prove that
+every generated claim follows logically from them.** Inspect the evidence.
+
+Semantic retrieval is opt-in. It combines keyword and embedding ranks, suppresses
+redundant windows, and respects the selected documents and context limits. Its
+separate local embedding cache is ignored by Git; the source database stays at
+schema 2. If embeddings fail, the UI explicitly reports keyword-only fallback.
+
+Configuration is through shell environment variables; `.env.example` is a reference,
+not an automatically loaded configuration file. To select an existing local model:
+
+```powershell
+$env:TUTORTRACE_LLM_PROVIDER = 'ollama'
+$env:TUTORTRACE_LLM_MODEL = 'qwen3:4b'
+$env:TUTORTRACE_TIMEOUT = '120'
+.\.venv\Scripts\python.exe -m streamlit run app.py
+```
+
+For a remote provider, set `TUTORTRACE_LLM_PROVIDER=openai-compatible`,
+`TUTORTRACE_LLM_URL` to its HTTPS API base ending in `/v1`, `TUTORTRACE_LLM_MODEL`,
+and `TUTORTRACE_API_KEY` through your shell or secret manager. The endpoint must
+support `/chat/completions`, `max_tokens` and JSON-object responses. Asking a
+question then sends that question and selected excerpts to the configured service.
+ChatGPT Plus / Claude Pro subscriptions do not imply API access. This remote
+adapter is covered by deterministic contract tests; a live remote service has
+not been verified with credentials in this milestone.
+
 ## Verify
 
 ```powershell
 .\.venv\Scripts\python.exe -m pytest -q
 .\.venv\Scripts\python.exe -m scripts.smoke_test
 .\.venv\Scripts\python.exe -m pip check
+.\.venv\Scripts\python.exe -m scripts.evaluate_tutor --output data\retrieval-evaluation.json
+.\.venv\Scripts\python.exe -m scripts.evaluate_tutor --real --output data\real-evaluation.json
+.\.venv\Scripts\python.exe -m scripts.evaluate_tutor --hybrid --output data\hybrid-evaluation.json
+.\.venv\Scripts\python.exe -m scripts.real_model_smoke --hybrid
 ```
 
 Tests generate small educational PDF/PPTX fixtures. The smoke test ingests the
@@ -97,6 +151,7 @@ local databases, credentials and environments are excluded from source control.
 - [Known limitations](docs/KNOWN_LIMITATIONS.md)
 - [Verification record and review handoff](docs/MILESTONE_1_VERIFICATION.md)
 - [Milestone 1 audit fixes and verification](docs/MILESTONE_1_AUDIT_FIX_VERIFICATION.md)
+- [Milestone 2 verification and evaluation](docs/MILESTONE_2_VERIFICATION.md)
 - [AI assistance and third-party attribution](docs/AI_DISCLOSURE.md)
 - [Sample material provenance](demo_assets/README.md)
 - [Original project blueprint](docs/TutorTrace_AI_First_Place_Blueprint.md)
