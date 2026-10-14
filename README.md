@@ -2,7 +2,7 @@
 
 Track D — Personalized Tutoring & Adaptive Learning, Multimodal AI Hackathon 2026.
 
-**Milestone 3:** a PDF/PPTX evidence library, source-grounded AI tutor, and persistent adaptive recall practice. Upload educational materials,
+**Submission release — Milestones 1–3:** a PDF/PPTX evidence library, source-grounded AI tutor, and persistent adaptive recall practice. Upload educational materials,
 search extracted text, inspect exact page/slide citations, preview PDF pages,
 download the byte-identical original, and ask a configured model questions about
 selected documents. Retrieval alone needs no model or API key. Local AI uses
@@ -11,7 +11,63 @@ Create a learner profile, complete a source-derived diagnostic quiz, review cite
 answers, track topic estimates, and prepare personalized AI revision. Video
 ingestion and visual understanding remain future milestones.
 
+## The problem
+
+Students need to connect an explanation or practice answer to the actual chapter
+or slide they are studying. A fluent answer without inspectable evidence makes
+mistakes difficult to spot, while an opaque progress score makes revision hard to
+prioritize. TutorTrace connects original materials, cited explanations, verifiable
+recall exercises and a transparent learner history in one local app.
+It is a working prototype, not a demonstrated improvement in student learning.
+
+## Implemented features and architecture
+
+- Preserve original PDF/PPTX bytes, extract text by physical page/slide, detect
+  duplicate uploads, and retain ingestion history and PDF-defined page labels.
+- Search with SQLite FTS5; optionally combine local embedding ranks for paraphrases.
+- Ask local Ollama or a configured remote model; validate request-specific source
+  IDs and exact quotes, expose excerpts, and show abstention or inference errors.
+- Generate source-cloze MCQs, exact-wording short answers and numerical value
+  recall, with deterministic answer keys and recent-fact repetition prevention.
+- Persist profiles, diagnostics, grades, recall estimates and revision priorities;
+  pass the selected learner's topic/course and practice level into the AI tutor.
+
+```text
+PDF / PPTX -> extraction -> source SQLite + FTS5 -> verified evidence
+                                                    |          |
+                                           LLM tutor        cloze quiz
+                                                    |          |
+                                        citation checks     exact grading
+                                                    |          |
+                                               Streamlit <- learner SQLite
+                                                               |
+                                                    revision priorities
+```
+
+Inference is separate from retrieval and assessment. Source schema 2 and learner
+schema 1 are independent; existing ingestion migrations remain unchanged.
+See [final architecture](docs/FINAL_ARCHITECTURE.md),
+[demo walkthrough](docs/DEMO_SCRIPT.md), and
+[submission text draft](docs/DEVPOST_SUBMISSION.md). Nothing is deployed or
+automatically submitted to Devpost.
+
+## Prerequisites
+
+- Python **3.11** with `venv` and SQLite FTS5; Git for cloning. Python 3.12+ is
+  outside the declared supported range. Windows PowerShell was used for verification.
+- Internet access for initial dependency installation; later document search,
+  quizzes and local-model inference can run without a remote API.
+- For AI answers: separately installed [Ollama](https://docs.ollama.com/quickstart)
+  and an installed generation model. The tested machine has approximately 16 GB
+  RAM and uses CPU inference. Available memory affects latency and reliability.
+- Qwen3 4B uses approximately 2.50 GB for the installed quantized model file;
+  runtime memory is additional. Check free disk/RAM before downloading a model.
+
 ## Install and run (Windows PowerShell, Python 3.11)
+
+For a fresh checkout, run
+`git clone https://github.com/AkhileshSelvan/tutortrace-ai.git` and change into
+the cloned directory. Substitute that location for `D:\tutortrace-ai` below.
 
 Run from this repository. The default `python` on the development machine is 3.14;
 use the explicit virtual-environment interpreter below.
@@ -48,6 +104,13 @@ The verified local defaults use **qwen3:4b** for generation and, optionally,
 **nomic-embed-text:latest** for semantic retrieval. Check `ollama list` first;
 missing models produce an explicit error, never an automatic download. CPU
 inference works on the tested 16 GB machine but can take tens of seconds.
+
+After installing Ollama, run `ollama list`. If `qwen3:4b` is absent and your
+resources permit it, explicitly run `ollama pull qwen3:4b`. Optional semantic
+retrieval requires `ollama pull nomic-embed-text`; it is unnecessary for the
+recommended keyword-only demo. Downloads are operator actions, never automatic
+application behavior. Do not start a second `ollama serve` if the service is
+already running. Keep the service running while using AI Tutor.
 
 1. Open **AI Tutor** below the library and search interface.
 2. Use **Check model status**. This checks installation, not a guarantee of enough
@@ -145,6 +208,16 @@ not been verified with credentials in this milestone.
 
 ## Verify
 
+Release verification on **14 October 2026** reran the complete suite:
+**216 passed in 88.82 seconds**, zero failures/skips. Ingestion and learning smoke
+checks passed, a fresh Streamlit server returned HTTP 200, and one real Qwen3 4B
+revision call answered in **70.54 seconds**. The recorded M2 diagnostic set
+recovered all 14/14 labelled source units, with selected-source precision 14/21;
+these are small-set observations, not general accuracy guarantees. The M3
+simulation completed 27/27 sessions and 81/81 answers with zero repeated facts.
+See [final evaluation](docs/FINAL_EVALUATION.md) for denominators, configurations,
+separation of mocks/simulations/real inference, and machine-readable records.
+
 ```powershell
 .\.venv\Scripts\python.exe -m pytest -q
 .\.venv\Scripts\python.exe -m scripts.smoke_test
@@ -202,6 +275,11 @@ local databases, credentials and environments are excluded from source control.
 
 ## Design and review
 
+- [Final architecture](docs/FINAL_ARCHITECTURE.md)
+- [Final evaluation and release checks](docs/FINAL_EVALUATION.md)
+- [Reproducible demonstration](docs/DEMO_SCRIPT.md)
+- [Devpost submission draft — not submitted](docs/DEVPOST_SUBMISSION.md)
+
 - [Architecture](docs/ARCHITECTURE.md)
 - [Known limitations](docs/KNOWN_LIMITATIONS.md)
 - [Verification record and review handoff](docs/MILESTONE_1_VERIFICATION.md)
@@ -215,3 +293,28 @@ local databases, credentials and environments are excluded from source control.
 
 The blueprint describes the broader product goal. It is not a claim that later
 milestones or competition acceptance gates are complete.
+
+## Known limitations
+
+No video/audio ingestion, OCR, diagram understanding, semantic grading, calibrated
+mastery, or measured real-student learning gains. PDF/PPTX support extracts text;
+it is not multimodal reasoning. Source validity does not guarantee claim truth.
+Numerical practice recalls stated values, and short-answer paraphrases need review.
+Local inference may be slow or fail; remote-provider integration has contract
+tests but no live credential-backed evaluation. Profiles have no authentication.
+See [the full limitations](docs/KNOWN_LIMITATIONS.md).
+
+## AI assistance, credits and licenses
+
+Built by Akhilesh Selvan with OpenAI Codex assistance for implementation, tests,
+synthetic materials and documentation. Runtime tutoring uses the configured model;
+test mocks are not application answers. No independent Claude Code audit is claimed.
+See [AI disclosure](docs/AI_DISCLOSURE.md).
+
+Original demo assets and explicitly identified synthetic evaluation content are
+CC0 1.0. **No repository-wide code license has been selected:** public visibility
+must not be represented as an open-source license grant. Dependency/model licenses
+remain separate. PyMuPDF uses AGPL/commercial licensing; other components and
+upstream notices are listed in [third-party notices](docs/THIRD_PARTY_NOTICES.md).
+The owner must resolve the intended code license and applicable distribution
+obligations; this release does not certify license compliance or event eligibility.
