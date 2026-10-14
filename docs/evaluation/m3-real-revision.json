@@ -1,0 +1,171 @@
+{
+  "documents": [
+    {
+      "name": "energy_notes.pdf",
+      "id": "f011c3e9094ba108cbcbeef5de107683b4e87c48b5b9e56b93421a6bca76b13b"
+    },
+    {
+      "name": "energy_slides.pptx",
+      "id": "1d9a315d43cfc9306b65a4e2a16db9b5b4a5a83b8d1833bbaa588c71c5e4649e"
+    }
+  ],
+  "formats": [
+    "mcq",
+    "short",
+    "numerical"
+  ],
+  "citations": [
+    "energy_slides.pptx, slide 1",
+    "energy_slides.pptx, slide 1",
+    "energy_notes.pdf, page 1"
+  ],
+  "grades": [
+    {
+      "status": "incorrect",
+      "score": 0,
+      "mastery_after": 0.3333333333333333
+    },
+    {
+      "status": "correct",
+      "score": 1,
+      "mastery_after": 0.5
+    },
+    {
+      "status": "correct",
+      "score": 1,
+      "mastery_after": 0.6
+    }
+  ],
+  "mastery": 0.6,
+  "next_difficulty": "medium",
+  "revision_reason": "Source-recall estimate 60% from 3 objectively graded answers; weaker tracked topics are prioritized.",
+  "revision_question": "Help me revise energy. My source-recall practice level is medium. Explain the key ideas using only the selected material, and mention prerequisites only if the sources explicitly state them.",
+  "pdf_preview_verified": true,
+  "fresh_process_restart_verified": true,
+  "real_inference_requested": true,
+  "real_inference": {
+    "question": "Help me revise energy. My source-recall practice level is medium. Explain the key ideas using only the selected material, and mention prerequisites only if the sources explicitly state them.",
+    "status": "answered",
+    "claims": [
+      {
+        "text": "In an isolated system, total energy remains constant and can transfer between kinetic and potential forms.",
+        "supports": [
+          {
+            "evidence": {
+              "chunk_id": "bcbec9370f9cedbb72902ac56fafcd598482025554b1594e09667e8bc205d628",
+              "unit_id": "42847cb2ed2a192ef335d3311850e00e46acbd0bdf547275a258ec9635d51b9a",
+              "document_id": "1d9a315d43cfc9306b65a4e2a16db9b5b4a5a83b8d1833bbaa588c71c5e4649e",
+              "filename": "energy_slides.pptx",
+              "source_type": "pptx",
+              "location": 1,
+              "start": 0,
+              "end": 133,
+              "text": "Conservation of energy In an isolated system, total energy remains constant. Energy can transfer between kinetic and potential forms.",
+              "unit_text": "Conservation of energy In an isolated system, total energy remains constant. Energy can transfer between kinetic and potential forms.",
+              "pipeline_version": "text-v2:pdf-dehyphenate-expand-ligatures-labels:chars-1200:overlap-150",
+              "page_label": null,
+              "rank": null
+            },
+            "quote": "Conservation of energy In an isolated system, total energy remains constant. Energy can transfer between kinetic and potential forms."
+          }
+        ]
+      },
+      {
+        "text": "Kinetic energy is the energy of motion, calculated as K = 0.5 * mass * speed squared.",
+        "supports": [
+          {
+            "evidence": {
+              "chunk_id": "76cf2c4ac8759cabc58001ab8401c9f111e719b5334f3a060be29171f30ed61c",
+              "unit_id": "46a32a2a9fc2e80c41cbe750e86fa4533cfd85cb8b7ad175d735291f06855f3c",
+              "document_id": "f011c3e9094ba108cbcbeef5de107683b4e87c48b5b9e56b93421a6bca76b13b",
+              "filename": "energy_notes.pdf",
+              "source_type": "pdf",
+              "location": 1,
+              "start": 0,
+              "end": 165,
+              "text": "Energy fundamentals Kinetic energy is the energy of motion. The formula is K = 0.5 * mass * speed squared. For mass 2 kg and speed 3 m/s, kinetic energy is 9 joules.",
+              "unit_text": "Energy fundamentals Kinetic energy is the energy of motion. The formula is K = 0.5 * mass * speed squared. For mass 2 kg and speed 3 m/s, kinetic energy is 9 joules.",
+              "pipeline_version": "text-v2:pdf-dehyphenate-expand-ligatures-labels:chars-1200:overlap-150",
+              "page_label": null,
+              "rank": null
+            },
+            "quote": "Energy fundamentals Kinetic energy is the energy of motion. The formula is K = 0.5 * mass * speed squared."
+          }
+        ]
+      },
+      {
+        "text": "For a 2 kg object moving at 3 m/s, kinetic energy equals 9 joules.",
+        "supports": [
+          {
+            "evidence": {
+              "chunk_id": "76cf2c4ac8759cabc58001ab8401c9f111e719b5334f3a060be29171f30ed61c",
+              "unit_id": "46a32a2a9fc2e80c41cbe750e86fa4533cfd85cb8b7ad175d735291f06855f3c",
+              "document_id": "f011c3e9094ba108cbcbeef5de107683b4e87c48b5b9e56b93421a6bca76b13b",
+              "filename": "energy_notes.pdf",
+              "source_type": "pdf",
+              "location": 1,
+              "start": 0,
+              "end": 165,
+              "text": "Energy fundamentals Kinetic energy is the energy of motion. The formula is K = 0.5 * mass * speed squared. For mass 2 kg and speed 3 m/s, kinetic energy is 9 joules.",
+              "unit_text": "Energy fundamentals Kinetic energy is the energy of motion. The formula is K = 0.5 * mass * speed squared. For mass 2 kg and speed 3 m/s, kinetic energy is 9 joules.",
+              "pipeline_version": "text-v2:pdf-dehyphenate-expand-ligatures-labels:chars-1200:overlap-150",
+              "page_label": null,
+              "rank": null
+            },
+            "quote": "For mass 2 kg and speed 3 m/s, kinetic energy is 9 joules."
+          }
+        ]
+      }
+    ],
+    "unsupported_aspects": [],
+    "context": {
+      "evidence": [
+        {
+          "chunk_id": "bcbec9370f9cedbb72902ac56fafcd598482025554b1594e09667e8bc205d628",
+          "unit_id": "42847cb2ed2a192ef335d3311850e00e46acbd0bdf547275a258ec9635d51b9a",
+          "document_id": "1d9a315d43cfc9306b65a4e2a16db9b5b4a5a83b8d1833bbaa588c71c5e4649e",
+          "filename": "energy_slides.pptx",
+          "source_type": "pptx",
+          "location": 1,
+          "start": 0,
+          "end": 133,
+          "text": "Conservation of energy In an isolated system, total energy remains constant. Energy can transfer between kinetic and potential forms.",
+          "unit_text": "Conservation of energy In an isolated system, total energy remains constant. Energy can transfer between kinetic and potential forms.",
+          "pipeline_version": "text-v2:pdf-dehyphenate-expand-ligatures-labels:chars-1200:overlap-150",
+          "page_label": null,
+          "rank": -1.6900067980965332e-06
+        },
+        {
+          "chunk_id": "76cf2c4ac8759cabc58001ab8401c9f111e719b5334f3a060be29171f30ed61c",
+          "unit_id": "46a32a2a9fc2e80c41cbe750e86fa4533cfd85cb8b7ad175d735291f06855f3c",
+          "document_id": "f011c3e9094ba108cbcbeef5de107683b4e87c48b5b9e56b93421a6bca76b13b",
+          "filename": "energy_notes.pdf",
+          "source_type": "pdf",
+          "location": 1,
+          "start": 0,
+          "end": 165,
+          "text": "Energy fundamentals Kinetic energy is the energy of motion. The formula is K = 0.5 * mass * speed squared. For mass 2 kg and speed 3 m/s, kinetic energy is 9 joules.",
+          "unit_text": "Energy fundamentals Kinetic energy is the energy of motion. The formula is K = 0.5 * mass * speed squared. For mass 2 kg and speed 3 m/s, kinetic energy is 9 joules.",
+          "pipeline_version": "text-v2:pdf-dehyphenate-expand-ligatures-labels:chars-1200:overlap-150",
+          "page_label": null,
+          "rank": -1.6543004491765098e-06
+        }
+      ],
+      "mode": "keyword",
+      "warnings": []
+    },
+    "provider": "ollama",
+    "model": "qwen3:4b",
+    "inference_succeeded": true,
+    "elapsed_seconds": 85.76112570000032,
+    "message": "AI answer with validated source references and exact supporting quotes."
+  },
+  "provider_configuration": {
+    "provider": "ollama",
+    "model": "qwen3:4b",
+    "timeout": 120,
+    "context_tokens": 2048,
+    "output_tokens": 500
+  },
+  "elapsed_seconds": 88.899
+}

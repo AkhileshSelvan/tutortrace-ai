@@ -1,0 +1,1659 @@
+{
+  "configuration": {
+    "version": 1,
+    "description": "Scripted response sequences for software behavior, not simulated cognitive learning or real-student gains.",
+    "questions_per_session": 3,
+    "formats": [
+      "mcq",
+      "numerical"
+    ],
+    "topic_order": [
+      "kinetic energy",
+      "power",
+      "potential energy"
+    ],
+    "rounds": 3,
+    "source_examples_per_topic": 12,
+    "profiles": [
+      {
+        "name": "Beginner",
+        "responses": [
+          "000",
+          "100",
+          "100",
+          "100",
+          "100",
+          "110",
+          "110",
+          "110",
+          "111"
+        ]
+      },
+      {
+        "name": "Intermediate",
+        "responses": [
+          "110",
+          "100",
+          "110",
+          "110",
+          "111",
+          "110",
+          "100",
+          "111",
+          "111"
+        ]
+      },
+      {
+        "name": "Advanced",
+        "responses": [
+          "111",
+          "111",
+          "110",
+          "111",
+          "111",
+          "111",
+          "111",
+          "111",
+          "111"
+        ]
+      }
+    ]
+  },
+  "source_inputs": [
+    {
+      "topic": "kinetic energy",
+      "filename": "kinetic.pdf",
+      "units": [
+        "Kinetic energy of a 2 kg cart moving at 1 m/s is 1 joules.",
+        "Kinetic energy of a 2 kg cart moving at 2 m/s is 4 joules.",
+        "Kinetic energy of a 2 kg cart moving at 3 m/s is 9 joules.",
+        "Kinetic energy of a 2 kg cart moving at 4 m/s is 16 joules.",
+        "Kinetic energy of a 2 kg cart moving at 5 m/s is 25 joules.",
+        "Kinetic energy of a 2 kg cart moving at 6 m/s is 36 joules.",
+        "Kinetic energy of a 2 kg cart moving at 7 m/s is 49 joules.",
+        "Kinetic energy of a 2 kg cart moving at 8 m/s is 64 joules.",
+        "Kinetic energy of a 2 kg cart moving at 9 m/s is 81 joules.",
+        "Kinetic energy of a 2 kg cart moving at 10 m/s is 100 joules.",
+        "Kinetic energy of a 2 kg cart moving at 11 m/s is 121 joules.",
+        "Kinetic energy of a 2 kg cart moving at 12 m/s is 144 joules."
+      ],
+      "document_id": "026a17cf6e71c96b7f63ae1d34fbf7c9473deebbe000a2903aba97e2cc7a6ac6"
+    },
+    {
+      "topic": "power",
+      "filename": "power.pptx",
+      "units": [
+        "Power for a lamp transferring 10 joules in 2 seconds is 5 watts.",
+        "Power for a lamp transferring 20 joules in 2 seconds is 10 watts.",
+        "Power for a lamp transferring 30 joules in 2 seconds is 15 watts.",
+        "Power for a lamp transferring 40 joules in 2 seconds is 20 watts.",
+        "Power for a lamp transferring 50 joules in 2 seconds is 25 watts.",
+        "Power for a lamp transferring 60 joules in 2 seconds is 30 watts.",
+        "Power for a lamp transferring 70 joules in 2 seconds is 35 watts.",
+        "Power for a lamp transferring 80 joules in 2 seconds is 40 watts.",
+        "Power for a lamp transferring 90 joules in 2 seconds is 45 watts.",
+        "Power for a lamp transferring 100 joules in 2 seconds is 50 watts.",
+        "Power for a lamp transferring 110 joules in 2 seconds is 55 watts.",
+        "Power for a lamp transferring 120 joules in 2 seconds is 60 watts."
+      ],
+      "document_id": "878b94c14067ddef8add2b3a17a7fd22339e9a719c9336aceedfeceac7ea605e"
+    },
+    {
+      "topic": "potential energy",
+      "filename": "potential.pptx",
+      "units": [
+        "Using gravity 10 m/s squared, potential energy of a 1 kg book at height 1 m is 10 joules.",
+        "Using gravity 10 m/s squared, potential energy of a 1 kg book at height 2 m is 20 joules.",
+        "Using gravity 10 m/s squared, potential energy of a 1 kg book at height 3 m is 30 joules.",
+        "Using gravity 10 m/s squared, potential energy of a 1 kg book at height 4 m is 40 joules.",
+        "Using gravity 10 m/s squared, potential energy of a 1 kg book at height 5 m is 50 joules.",
+        "Using gravity 10 m/s squared, potential energy of a 1 kg book at height 6 m is 60 joules.",
+        "Using gravity 10 m/s squared, potential energy of a 1 kg book at height 7 m is 70 joules.",
+        "Using gravity 10 m/s squared, potential energy of a 1 kg book at height 8 m is 80 joules.",
+        "Using gravity 10 m/s squared, potential energy of a 1 kg book at height 9 m is 90 joules.",
+        "Using gravity 10 m/s squared, potential energy of a 1 kg book at height 10 m is 100 joules.",
+        "Using gravity 10 m/s squared, potential energy of a 1 kg book at height 11 m is 110 joules.",
+        "Using gravity 10 m/s squared, potential energy of a 1 kg book at height 12 m is 120 joules."
+      ],
+      "document_id": "c9bdba498eeaaab862558ee5efdfd2879bff7619390d2f82724adbbf9cdabc08"
+    }
+  ],
+  "interpretation": "Deterministic software simulation. Response correctness is prescribed, not learned. Estimate changes do not demonstrate improved learning.",
+  "provider": "none; deterministic source-recall generation and grading",
+  "profiles": [
+    {
+      "name": "Beginner",
+      "sessions_completed": 9,
+      "sessions_requested": 9,
+      "questions_completed": 27,
+      "questions_requested": 27,
+      "repeated_facts_ever": 0,
+      "repeated_facts_within_two_sessions": 0,
+      "repeat_denominator": 27,
+      "recommendation_changes": 0,
+      "recommendation_transition_denominator": 8,
+      "difficulty_sequence": [
+        "easy",
+        "easy",
+        "easy",
+        "easy",
+        "easy",
+        "easy",
+        "easy",
+        "easy",
+        "medium"
+      ],
+      "final_mastery": {
+        "kinetic energy": {
+          "estimate": 0.36363636363636365,
+          "correct": 3,
+          "incorrect": 6,
+          "review": 0
+        },
+        "power": {
+          "estimate": 0.45454545454545453,
+          "correct": 4,
+          "incorrect": 5,
+          "review": 0
+        },
+        "potential energy": {
+          "estimate": 0.6363636363636364,
+          "correct": 6,
+          "incorrect": 3,
+          "review": 0
+        }
+      },
+      "restart_preserved": true,
+      "sessions": [
+        {
+          "number": 1,
+          "topic": "kinetic energy",
+          "difficulty": "easy",
+          "diagnostic": true,
+          "response_pattern": "000",
+          "questions": [
+            {
+              "question_id": "9c0519f6e79f1bcf18588cd8446445dab3ff159b5aac8226dc1c48b9ca0c107e",
+              "fact_id": "5b0de9977e01b9c911a262dccd51d398d4030334f1b0e791eaf9b1cc45de4f86",
+              "format": "mcq",
+              "source_document": "026a17cf6e71c96b7f63ae1d34fbf7c9473deebbe000a2903aba97e2cc7a6ac6",
+              "source_location": 1,
+              "citation": "kinetic.pdf, page 1",
+              "excerpt": "Kinetic energy of a 2 kg cart moving at 1 m/s is 1 joules.",
+              "prompt": "Which option completes this source statement exactly?\n\nKinetic energy of a 2 kg cart moving at 1 m/s is [____] joules.",
+              "verified_key": "1",
+              "response": "2"
+            },
+            {
+              "question_id": "66461f50e3e6b0c5b0555e09f3dedff989c4eacc8f12bf559776806ef7e32475",
+              "fact_id": "ff59ccf4436072c8f6e2fe8d9a1ba406b6fbb98ffb31d64524852275e4cede95",
+              "format": "numerical",
+              "source_document": "026a17cf6e71c96b7f63ae1d34fbf7c9473deebbe000a2903aba97e2cc7a6ac6",
+              "source_location": 2,
+              "citation": "kinetic.pdf, page 2",
+              "excerpt": "Kinetic energy of a 2 kg cart moving at 2 m/s is 4 joules.",
+              "prompt": "Recall the missing numerical value from the source. Enter a number only; units remain in the statement. Hint: the source writes this value with 0 decimal places. It lies strictly between 3 and 5.\n\nKinetic energy of a 2 kg cart moving at 2 m/s is [____] joules.",
+              "verified_key": "4",
+              "response": "5"
+            },
+            {
+              "question_id": "4a95e384d414dd9cd71347c20a13df859e2484fb06f80691b0e4e6fb4288b639",
+              "fact_id": "e957dff2f5f1e8bc3ebeb6ec760ed9f8e228e1381a1bb8cf465ff2fea7a3cadd",
+              "format": "mcq",
+              "source_document": "026a17cf6e71c96b7f63ae1d34fbf7c9473deebbe000a2903aba97e2cc7a6ac6",
+              "source_location": 3,
+              "citation": "kinetic.pdf, page 3",
+              "excerpt": "Kinetic energy of a 2 kg cart moving at 3 m/s is 9 joules.",
+              "prompt": "Which option completes this source statement exactly?\n\nKinetic energy of a 2 kg cart moving at 3 m/s is [____] joules.",
+              "verified_key": "9",
+              "response": "10"
+            }
+          ],
+          "status": "completed",
+          "mastery_after": {
+            "kinetic energy": 0.2
+          },
+          "revision_priority": "kinetic energy"
+        },
+        {
+          "number": 2,
+          "topic": "power",
+          "difficulty": "easy",
+          "diagnostic": true,
+          "response_pattern": "100",
+          "questions": [
+            {
+              "question_id": "5808eb93b63453b40a0f17e553d0d4ec84cf47e0518cfe695774be15d4c81bdf",
+              "fact_id": "2c28402005f006f2feecf22f70c158896685cf1f86d72deffe23c3cca90eac5c",
+              "format": "mcq",
+              "source_document": "878b94c14067ddef8add2b3a17a7fd22339e9a719c9336aceedfeceac7ea605e",
+              "source_location": 1,
+              "citation": "power.pptx, slide 1",
+              "excerpt": "Power for a lamp transferring 10 joules in 2 seconds is 5 watts.",
+              "prompt": "Which option completes this source statement exactly?\n\nPower for a lamp transferring 10 joules in 2 seconds is [____] watts.",
+              "verified_key": "5",
+              "response": "5"
+            },
+            {
+              "question_id": "21a7161840b3b142e5d648b6465d3513516c91c6db7526cd5a65c4cade076a81",
+              "fact_id": "a4fb83c1dc415075e82a0bcd5d003f0d5ae654e12ba2b9f65fa3c22df5f7f6e9",
+              "format": "numerical",
+              "source_document": "878b94c14067ddef8add2b3a17a7fd22339e9a719c9336aceedfeceac7ea605e",
+              "source_location": 2,
+              "citation": "power.pptx, slide 2",
+              "excerpt": "Power for a lamp transferring 20 joules in 2 seconds is 10 watts.",
+              "prompt": "Recall the missing numerical value from the source. Enter a number only; units remain in the statement. Hint: the source writes this value with 0 decimal places. It lies strictly between 9 and 11.\n\nPower for a lamp transferring 20 joules in 2 seconds is [____] watts.",
+              "verified_key": "10",
+              "response": "11"
+            },
+            {
+              "question_id": "6af1d286f75ac0436fe401b077e61acf2cfea01d4c87d4f385a3c3d0161b2249",
+              "fact_id": "5a19b745b0ad306d2e17bde70419fe691ebc65efc5aec15f768d882e9cf58058",
+              "format": "mcq",
+              "source_document": "878b94c14067ddef8add2b3a17a7fd22339e9a719c9336aceedfeceac7ea605e",
+              "source_location": 3,
+              "citation": "power.pptx, slide 3",
+              "excerpt": "Power for a lamp transferring 30 joules in 2 seconds is 15 watts.",
+              "prompt": "Which option completes this source statement exactly?\n\nPower for a lamp transferring 30 joules in 2 seconds is [____] watts.",
+              "verified_key": "15",
+              "response": "14"
+            }
+          ],
+          "status": "completed",
+          "mastery_after": {
+            "kinetic energy": 0.2,
+            "power": 0.4
+          },
+          "revision_priority": "kinetic energy"
+        },
+        {
+          "number": 3,
+          "topic": "potential energy",
+          "difficulty": "easy",
+          "diagnostic": true,
+          "response_pattern": "100",
+          "questions": [
+            {
+              "question_id": "73cba6a526e919dd1f3dfd9f598d93084e12596a6f1bd10b2dd24781710a90fd",
+              "fact_id": "51c5df1b0c7001096741f7f76349290ef31372461cb2cbf7b78f956331c3a9f9",
+              "format": "mcq",
+              "source_document": "c9bdba498eeaaab862558ee5efdfd2879bff7619390d2f82724adbbf9cdabc08",
+              "source_location": 1,
+              "citation": "potential.pptx, slide 1",
+              "excerpt": "Using gravity 10 m/s squared, potential energy of a 1 kg book at height 1 m is 10 joules.",
+              "prompt": "Which option completes this source statement exactly?\n\nUsing gravity 10 m/s squared, potential energy of a 1 kg book at height 1 m is [____] joules.",
+              "verified_key": "10",
+              "response": "10"
+            },
+            {
+              "question_id": "a22119afac7915733151d0e6387042c2709bc3eea2820e6186779226dd46548d",
+              "fact_id": "e384002956baf7cf3424752729507c9892843eb7942be11defc1822885f14b3c",
+              "format": "numerical",
+              "source_document": "c9bdba498eeaaab862558ee5efdfd2879bff7619390d2f82724adbbf9cdabc08",
+              "source_location": 2,
+              "citation": "potential.pptx, slide 2",
+              "excerpt": "Using gravity 10 m/s squared, potential energy of a 1 kg book at height 2 m is 20 joules.",
+              "prompt": "Recall the missing numerical value from the source. Enter a number only; units remain in the statement. Hint: the source writes this value with 0 decimal places. It lies strictly between 18 and 22.\n\nUsing gravity 10 m/s squared, potential energy of a 1 kg book at height 2 m is [____] joules.",
+              "verified_key": "20",
+              "response": "21"
+            },
+            {
+              "question_id": "1578faab056fb33f8f40c1b48bf4df01b6a433a04bea4fbe448e00fe0ebe6b87",
+              "fact_id": "1bb97fd18fc0f76c60be1a180ba5aa9685012e094aa45b9d6c882ce4c12a4baa",
+              "format": "mcq",
+              "source_document": "c9bdba498eeaaab862558ee5efdfd2879bff7619390d2f82724adbbf9cdabc08",
+              "source_location": 3,
+              "citation": "potential.pptx, slide 3",
+              "excerpt": "Using gravity 10 m/s squared, potential energy of a 1 kg book at height 3 m is 30 joules.",
+              "prompt": "Which option completes this source statement exactly?\n\nUsing gravity 10 m/s squared, potential energy of a 1 kg book at height 3 m is [____] joules.",
+              "verified_key": "30",
+              "response": "31"
+            }
+          ],
+          "status": "completed",
+          "mastery_after": {
+            "kinetic energy": 0.2,
+            "potential energy": 0.4,
+            "power": 0.4
+          },
+          "revision_priority": "kinetic energy"
+        },
+        {
+          "number": 4,
+          "topic": "kinetic energy",
+          "difficulty": "easy",
+          "diagnostic": false,
+          "response_pattern": "100",
+          "questions": [
+            {
+              "question_id": "6175d4a574dbc580145d62b42ad118692ceb682a730d1bc92cef2697af68a439",
+              "fact_id": "b4199b1f3a5db823223f1151d5585f23b49bdd9810991b386723338741a89dbb",
+              "format": "mcq",
+              "source_document": "026a17cf6e71c96b7f63ae1d34fbf7c9473deebbe000a2903aba97e2cc7a6ac6",
+              "source_location": 4,
+              "citation": "kinetic.pdf, page 4",
+              "excerpt": "Kinetic energy of a 2 kg cart moving at 4 m/s is 16 joules.",
+              "prompt": "Which option completes this source statement exactly?\n\nKinetic energy of a 2 kg cart moving at 4 m/s is [____] joules.",
+              "verified_key": "16",
+              "response": "16"
+            },
+            {
+              "question_id": "0be59800aa5f745b4d0ae0bfbb6c3d15577476329cfaa9bbba005fe0916ea648",
+              "fact_id": "93b4fbe8a24a79fbb9823d6186d48882a0f7dbad67d410459b6e680d958deedb",
+              "format": "numerical",
+              "source_document": "026a17cf6e71c96b7f63ae1d34fbf7c9473deebbe000a2903aba97e2cc7a6ac6",
+              "source_location": 5,
+              "citation": "kinetic.pdf, page 5",
+              "excerpt": "Kinetic energy of a 2 kg cart moving at 5 m/s is 25 joules.",
+              "prompt": "Recall the missing numerical value from the source. Enter a number only; units remain in the statement. Hint: the source writes this value with 0 decimal places. It lies strictly between 22.5 and 27.5.\n\nKinetic energy of a 2 kg cart moving at 5 m/s is [____] joules.",
+              "verified_key": "25",
+              "response": "26"
+            },
+            {
+              "question_id": "9704d48cbcc4c2172f1b2c0641f2c3c0a43eebc7feb80e9a1d7d537359335684",
+              "fact_id": "ca1d0fb07e0adff3c678e272ba20fbb9b2d1daafc706f0856d97fa010aa02132",
+              "format": "mcq",
+              "source_document": "026a17cf6e71c96b7f63ae1d34fbf7c9473deebbe000a2903aba97e2cc7a6ac6",
+              "source_location": 6,
+              "citation": "kinetic.pdf, page 6",
+              "excerpt": "Kinetic energy of a 2 kg cart moving at 6 m/s is 36 joules.",
+              "prompt": "Which option completes this source statement exactly?\n\nKinetic energy of a 2 kg cart moving at 6 m/s is [____] joules.",
+              "verified_key": "36",
+              "response": "35"
+            }
+          ],
+          "status": "completed",
+          "mastery_after": {
+            "kinetic energy": 0.25,
+            "potential energy": 0.4,
+            "power": 0.4
+          },
+          "revision_priority": "kinetic energy"
+        },
+        {
+          "number": 5,
+          "topic": "power",
+          "difficulty": "easy",
+          "diagnostic": false,
+          "response_pattern": "100",
+          "questions": [
+            {
+              "question_id": "86c1513a0547bb4e7b42798a7238d0dcc3d13fd9387dcb88bb3bd49bd58bb333",
+              "fact_id": "9c226bbe157e364c497cac199d815666330db003d65f803121ee4c9150d65819",
+              "format": "mcq",
+              "source_document": "878b94c14067ddef8add2b3a17a7fd22339e9a719c9336aceedfeceac7ea605e",
+              "source_location": 4,
+              "citation": "power.pptx, slide 4",
+              "excerpt": "Power for a lamp transferring 40 joules in 2 seconds is 20 watts.",
+              "prompt": "Which option completes this source statement exactly?\n\nPower for a lamp transferring 40 joules in 2 seconds is [____] watts.",
+              "verified_key": "20",
+              "response": "20"
+            },
+            {
+              "question_id": "d37732d4539a6d10e77f92e56cc2a963aefc7d79a0cdaa6632525b17dfdf4fff",
+              "fact_id": "c2f290370d6ed9878abb5ae667dfe3b9a3abb5e71bc006e9124bda22851d0d63",
+              "format": "numerical",
+              "source_document": "878b94c14067ddef8add2b3a17a7fd22339e9a719c9336aceedfeceac7ea605e",
+              "source_location": 5,
+              "citation": "power.pptx, slide 5",
+              "excerpt": "Power for a lamp transferring 50 joules in 2 seconds is 25 watts.",
+              "prompt": "Recall the missing numerical value from the source. Enter a number only; units remain in the statement. Hint: the source writes this value with 0 decimal places. It lies strictly between 22.5 and 27.5.\n\nPower for a lamp transferring 50 joules in 2 seconds is [____] watts.",
+              "verified_key": "25",
+              "response": "26"
+            },
+            {
+              "question_id": "a6de4deb092b45cf34ece8c02a3987e720e9db63956be0b614cee82560fd9460",
+              "fact_id": "68261464945757097abf8f99cfadc9b4f892d672825d2e7019601cdfc4d27a31",
+              "format": "mcq",
+              "source_document": "878b94c14067ddef8add2b3a17a7fd22339e9a719c9336aceedfeceac7ea605e",
+              "source_location": 6,
+              "citation": "power.pptx, slide 6",
+              "excerpt": "Power for a lamp transferring 60 joules in 2 seconds is 30 watts.",
+              "prompt": "Which option completes this source statement exactly?\n\nPower for a lamp transferring 60 joules in 2 seconds is [____] watts.",
+              "verified_key": "30",
+              "response": "31"
+            }
+          ],
+          "status": "completed",
+          "mastery_after": {
+            "kinetic energy": 0.25,
+            "power": 0.375,
+            "potential energy": 0.4
+          },
+          "revision_priority": "kinetic energy"
+        },
+        {
+          "number": 6,
+          "topic": "potential energy",
+          "difficulty": "easy",
+          "diagnostic": false,
+          "response_pattern": "110",
+          "questions": [
+            {
+              "question_id": "8049fbc7debee68b66e1a093c4dff77fd5e464174656cb815cdea047a6ac8b03",
+              "fact_id": "d024f37a9a178dc867cdcd4400a70833a035973bd825b719db254c044c80dfe6",
+              "format": "mcq",
+              "source_document": "c9bdba498eeaaab862558ee5efdfd2879bff7619390d2f82724adbbf9cdabc08",
+              "source_location": 4,
+              "citation": "potential.pptx, slide 4",
+              "excerpt": "Using gravity 10 m/s squared, potential energy of a 1 kg book at height 4 m is 40 joules.",
+              "prompt": "Which option completes this source statement exactly?\n\nUsing gravity 10 m/s squared, potential energy of a 1 kg book at height 4 m is [____] joules.",
+              "verified_key": "40",
+              "response": "40"
+            },
+            {
+              "question_id": "64dca27e1a864b0f0afaf1e76296dea864fa2475c4c7aa96dea7504a05a4a42f",
+              "fact_id": "e946c2f0aa85299513c319246c516d61eb302e5a1af4b8221cb461e5fea07e6c",
+              "format": "numerical",
+              "source_document": "c9bdba498eeaaab862558ee5efdfd2879bff7619390d2f82724adbbf9cdabc08",
+              "source_location": 5,
+              "citation": "potential.pptx, slide 5",
+              "excerpt": "Using gravity 10 m/s squared, potential energy of a 1 kg book at height 5 m is 50 joules.",
+              "prompt": "Recall the missing numerical value from the source. Enter a number only; units remain in the statement. Hint: the source writes this value with 0 decimal places. It lies strictly between 45 and 55.\n\nUsing gravity 10 m/s squared, potential energy of a 1 kg book at height 5 m is [____] joules.",
+              "verified_key": "50",
+              "response": "50"
+            },
+            {
+              "question_id": "4689f776ec47e28cc7dac73ba572294e302875621eb6d98a782fe05ee0048194",
+              "fact_id": "672cf2192cb7db0a683bf9e8fca3836fb6e6b8cca0890621ab2726f2e0d7e6ac",
+              "format": "mcq",
+              "source_document": "c9bdba498eeaaab862558ee5efdfd2879bff7619390d2f82724adbbf9cdabc08",
+              "source_location": 6,
+              "citation": "potential.pptx, slide 6",
+              "excerpt": "Using gravity 10 m/s squared, potential energy of a 1 kg book at height 6 m is 60 joules.",
+              "prompt": "Which option completes this source statement exactly?\n\nUsing gravity 10 m/s squared, potential energy of a 1 kg book at height 6 m is [____] joules.",
+              "verified_key": "60",
+              "response": "59"
+            }
+          ],
+          "status": "completed",
+          "mastery_after": {
+            "kinetic energy": 0.25,
+            "power": 0.375,
+            "potential energy": 0.5
+          },
+          "revision_priority": "kinetic energy"
+        },
+        {
+          "number": 7,
+          "topic": "kinetic energy",
+          "difficulty": "easy",
+          "diagnostic": false,
+          "response_pattern": "110",
+          "questions": [
+            {
+              "question_id": "668a1dd360e3619d8e6500d9000ea722fc2d183e39b67b4211bee748b4cbc424",
+              "fact_id": "abb8e755075b1ed57537d6f0c630189576e3e17b358f5207ba798f4b43a8a36a",
+              "format": "mcq",
+              "source_document": "026a17cf6e71c96b7f63ae1d34fbf7c9473deebbe000a2903aba97e2cc7a6ac6",
+              "source_location": 7,
+              "citation": "kinetic.pdf, page 7",
+              "excerpt": "Kinetic energy of a 2 kg cart moving at 7 m/s is 49 joules.",
+              "prompt": "Which option completes this source statement exactly?\n\nKinetic energy of a 2 kg cart moving at 7 m/s is [____] joules.",
+              "verified_key": "49",
+              "response": "49"
+            },
+            {
+              "question_id": "404400c2cc8b3c9b7ef37241b6d4902e5f86f5bb1fb5de870818dacc06b360a2",
+              "fact_id": "41ae6c0070259ecb9b8e2c164d0bea4f57897239a48ff471870201e51869466c",
+              "format": "numerical",
+              "source_document": "026a17cf6e71c96b7f63ae1d34fbf7c9473deebbe000a2903aba97e2cc7a6ac6",
+              "source_location": 8,
+              "citation": "kinetic.pdf, page 8",
+              "excerpt": "Kinetic energy of a 2 kg cart moving at 8 m/s is 64 joules.",
+              "prompt": "Recall the missing numerical value from the source. Enter a number only; units remain in the statement. Hint: the source writes this value with 0 decimal places. It lies strictly between 57.6 and 70.4.\n\nKinetic energy of a 2 kg cart moving at 8 m/s is [____] joules.",
+              "verified_key": "64",
+              "response": "64"
+            },
+            {
+              "question_id": "1835657efd7fba00110fde4db675ba8e872d8154b6b28491a7d4b89658dabe19",
+              "fact_id": "a5d9f3fe4c282da3e3126f0840a67a27f739db791381ebb4d964f090f26d891c",
+              "format": "mcq",
+              "source_document": "026a17cf6e71c96b7f63ae1d34fbf7c9473deebbe000a2903aba97e2cc7a6ac6",
+              "source_location": 9,
+              "citation": "kinetic.pdf, page 9",
+              "excerpt": "Kinetic energy of a 2 kg cart moving at 9 m/s is 81 joules.",
+              "prompt": "Which option completes this source statement exactly?\n\nKinetic energy of a 2 kg cart moving at 9 m/s is [____] joules.",
+              "verified_key": "81",
+              "response": "82"
+            }
+          ],
+          "status": "completed",
+          "mastery_after": {
+            "kinetic energy": 0.36363636363636365,
+            "power": 0.375,
+            "potential energy": 0.5
+          },
+          "revision_priority": "kinetic energy"
+        },
+        {
+          "number": 8,
+          "topic": "power",
+          "difficulty": "easy",
+          "diagnostic": false,
+          "response_pattern": "110",
+          "questions": [
+            {
+              "question_id": "46f8d103f49fff8881e76cc278a3ed6eb7b4fae0d9fb801cff8c7766e728a57e",
+              "fact_id": "353a2704bf3e084eaeb3456f8315fcf12112c7a2fff34f0167c935820c536825",
+              "format": "mcq",
+              "source_document": "878b94c14067ddef8add2b3a17a7fd22339e9a719c9336aceedfeceac7ea605e",
+              "source_location": 7,
+              "citation": "power.pptx, slide 7",
+              "excerpt": "Power for a lamp transferring 70 joules in 2 seconds is 35 watts.",
+              "prompt": "Which option completes this source statement exactly?\n\nPower for a lamp transferring 70 joules in 2 seconds is [____] watts.",
+              "verified_key": "35",
+              "response": "35"
+            },
+            {
+              "question_id": "caaa98d39e3de3c410c59ff739d5ab6a4875c7c3915771c610403576777b2dfa",
+              "fact_id": "20cd706f87b4a8b3172670036a66029f71e4d14885b45d36ec9c69cddefa97f1",
+              "format": "numerical",
+              "source_document": "878b94c14067ddef8add2b3a17a7fd22339e9a719c9336aceedfeceac7ea605e",
+              "source_location": 8,
+              "citation": "power.pptx, slide 8",
+              "excerpt": "Power for a lamp transferring 80 joules in 2 seconds is 40 watts.",
+              "prompt": "Recall the missing numerical value from the source. Enter a number only; units remain in the statement. Hint: the source writes this value with 0 decimal places. It lies strictly between 36 and 44.\n\nPower for a lamp transferring 80 joules in 2 seconds is [____] watts.",
+              "verified_key": "40",
+              "response": "40"
+            },
+            {
+              "question_id": "72d8ab2e5b9e25384f79bb6affd9e23228fee1349f172f2e4196e9017957a4b5",
+              "fact_id": "689d5359ee1afd9332bf19a2b7523b411017cb35fcbd716cfeabbbcf6b7b5d2f",
+              "format": "mcq",
+              "source_document": "878b94c14067ddef8add2b3a17a7fd22339e9a719c9336aceedfeceac7ea605e",
+              "source_location": 9,
+              "citation": "power.pptx, slide 9",
+              "excerpt": "Power for a lamp transferring 90 joules in 2 seconds is 45 watts.",
+              "prompt": "Which option completes this source statement exactly?\n\nPower for a lamp transferring 90 joules in 2 seconds is [____] watts.",
+              "verified_key": "45",
+              "response": "44"
+            }
+          ],
+          "status": "completed",
+          "mastery_after": {
+            "kinetic energy": 0.36363636363636365,
+            "power": 0.45454545454545453,
+            "potential energy": 0.5
+          },
+          "revision_priority": "kinetic energy"
+        },
+        {
+          "number": 9,
+          "topic": "potential energy",
+          "difficulty": "medium",
+          "diagnostic": false,
+          "response_pattern": "111",
+          "questions": [
+            {
+              "question_id": "4a208539c52fc046b47ab971ec90d97324bef0cd99121e4340cb5cb83802f536",
+              "fact_id": "b8125fce27718aa6ce34d70323c5ba6703fc7bc53e9526bfdd73c49021dd0664",
+              "format": "mcq",
+              "source_document": "c9bdba498eeaaab862558ee5efdfd2879bff7619390d2f82724adbbf9cdabc08",
+              "source_location": 7,
+              "citation": "potential.pptx, slide 7",
+              "excerpt": "Using gravity 10 m/s squared, potential energy of a 1 kg book at height 7 m is 70 joules.",
+              "prompt": "Which option completes this source statement exactly?\n\nUsing gravity 10 m/s squared, potential energy of a 1 kg book at height 7 m is [____] joules.",
+              "verified_key": "70",
+              "response": "70"
+            },
+            {
+              "question_id": "4b8be3f2986e73dcc63d9af7e7c12a708a686e88de376dbe3aa9d8dbf368f58d",
+              "fact_id": "2878fc42f815106cd8f302d2a5eca064a679c0bc63455df73c2f5042c44ae298",
+              "format": "numerical",
+              "source_document": "c9bdba498eeaaab862558ee5efdfd2879bff7619390d2f82724adbbf9cdabc08",
+              "source_location": 8,
+              "citation": "potential.pptx, slide 8",
+              "excerpt": "Using gravity 10 m/s squared, potential energy of a 1 kg book at height 8 m is 80 joules.",
+              "prompt": "Recall the missing numerical value from the source. Enter a number only; units remain in the statement. Hint: the source writes this value with 0 decimal places.\n\nUsing gravity 10 m/s squared, potential energy of a 1 kg book at height 8 m is [____] joules.",
+              "verified_key": "80",
+              "response": "80"
+            },
+            {
+              "question_id": "c2edae23c19881d42767929f085215a9c2d92c16b6d63843c7b9d637f6cfc491",
+              "fact_id": "314ed37acdc87d497a6075a81de3439114701a293f75be940c9e094d905728ff",
+              "format": "mcq",
+              "source_document": "c9bdba498eeaaab862558ee5efdfd2879bff7619390d2f82724adbbf9cdabc08",
+              "source_location": 9,
+              "citation": "potential.pptx, slide 9",
+              "excerpt": "Using gravity 10 m/s squared, potential energy of a 1 kg book at height 9 m is 90 joules.",
+              "prompt": "Which option completes this source statement exactly?\n\nUsing gravity 10 m/s squared, potential energy of a 1 kg book at height 9 m is [____] joules.",
+              "verified_key": "90",
+              "response": "90"
+            }
+          ],
+          "status": "completed",
+          "mastery_after": {
+            "kinetic energy": 0.36363636363636365,
+            "power": 0.45454545454545453,
+            "potential energy": 0.6363636363636364
+          },
+          "revision_priority": "kinetic energy"
+        }
+      ]
+    },
+    {
+      "name": "Intermediate",
+      "sessions_completed": 9,
+      "sessions_requested": 9,
+      "questions_completed": 27,
+      "questions_requested": 27,
+      "repeated_facts_ever": 0,
+      "repeated_facts_within_two_sessions": 0,
+      "repeat_denominator": 27,
+      "recommendation_changes": 3,
+      "recommendation_transition_denominator": 8,
+      "difficulty_sequence": [
+        "easy",
+        "easy",
+        "easy",
+        "medium",
+        "easy",
+        "medium",
+        "medium",
+        "medium",
+        "medium"
+      ],
+      "final_mastery": {
+        "kinetic energy": {
+          "estimate": 0.5454545454545454,
+          "correct": 5,
+          "incorrect": 4,
+          "review": 0
+        },
+        "potential energy": {
+          "estimate": 0.7272727272727273,
+          "correct": 7,
+          "incorrect": 2,
+          "review": 0
+        },
+        "power": {
+          "estimate": 0.7272727272727273,
+          "correct": 7,
+          "incorrect": 2,
+          "review": 0
+        }
+      },
+      "restart_preserved": true,
+      "sessions": [
+        {
+          "number": 1,
+          "topic": "kinetic energy",
+          "difficulty": "easy",
+          "diagnostic": true,
+          "response_pattern": "110",
+          "questions": [
+            {
+              "question_id": "9c0519f6e79f1bcf18588cd8446445dab3ff159b5aac8226dc1c48b9ca0c107e",
+              "fact_id": "5b0de9977e01b9c911a262dccd51d398d4030334f1b0e791eaf9b1cc45de4f86",
+              "format": "mcq",
+              "source_document": "026a17cf6e71c96b7f63ae1d34fbf7c9473deebbe000a2903aba97e2cc7a6ac6",
+              "source_location": 1,
+              "citation": "kinetic.pdf, page 1",
+              "excerpt": "Kinetic energy of a 2 kg cart moving at 1 m/s is 1 joules.",
+              "prompt": "Which option completes this source statement exactly?\n\nKinetic energy of a 2 kg cart moving at 1 m/s is [____] joules.",
+              "verified_key": "1",
+              "response": "1"
+            },
+            {
+              "question_id": "66461f50e3e6b0c5b0555e09f3dedff989c4eacc8f12bf559776806ef7e32475",
+              "fact_id": "ff59ccf4436072c8f6e2fe8d9a1ba406b6fbb98ffb31d64524852275e4cede95",
+              "format": "numerical",
+              "source_document": "026a17cf6e71c96b7f63ae1d34fbf7c9473deebbe000a2903aba97e2cc7a6ac6",
+              "source_location": 2,
+              "citation": "kinetic.pdf, page 2",
+              "excerpt": "Kinetic energy of a 2 kg cart moving at 2 m/s is 4 joules.",
+              "prompt": "Recall the missing numerical value from the source. Enter a number only; units remain in the statement. Hint: the source writes this value with 0 decimal places. It lies strictly between 3 and 5.\n\nKinetic energy of a 2 kg cart moving at 2 m/s is [____] joules.",
+              "verified_key": "4",
+              "response": "4"
+            },
+            {
+              "question_id": "4a95e384d414dd9cd71347c20a13df859e2484fb06f80691b0e4e6fb4288b639",
+              "fact_id": "e957dff2f5f1e8bc3ebeb6ec760ed9f8e228e1381a1bb8cf465ff2fea7a3cadd",
+              "format": "mcq",
+              "source_document": "026a17cf6e71c96b7f63ae1d34fbf7c9473deebbe000a2903aba97e2cc7a6ac6",
+              "source_location": 3,
+              "citation": "kinetic.pdf, page 3",
+              "excerpt": "Kinetic energy of a 2 kg cart moving at 3 m/s is 9 joules.",
+              "prompt": "Which option completes this source statement exactly?\n\nKinetic energy of a 2 kg cart moving at 3 m/s is [____] joules.",
+              "verified_key": "9",
+              "response": "10"
+            }
+          ],
+          "status": "completed",
+          "mastery_after": {
+            "kinetic energy": 0.6
+          },
+          "revision_priority": "kinetic energy"
+        },
+        {
+          "number": 2,
+          "topic": "power",
+          "difficulty": "easy",
+          "diagnostic": true,
+          "response_pattern": "100",
+          "questions": [
+            {
+              "question_id": "5808eb93b63453b40a0f17e553d0d4ec84cf47e0518cfe695774be15d4c81bdf",
+              "fact_id": "2c28402005f006f2feecf22f70c158896685cf1f86d72deffe23c3cca90eac5c",
+              "format": "mcq",
+              "source_document": "878b94c14067ddef8add2b3a17a7fd22339e9a719c9336aceedfeceac7ea605e",
+              "source_location": 1,
+              "citation": "power.pptx, slide 1",
+              "excerpt": "Power for a lamp transferring 10 joules in 2 seconds is 5 watts.",
+              "prompt": "Which option completes this source statement exactly?\n\nPower for a lamp transferring 10 joules in 2 seconds is [____] watts.",
+              "verified_key": "5",
+              "response": "5"
+            },
+            {
+              "question_id": "21a7161840b3b142e5d648b6465d3513516c91c6db7526cd5a65c4cade076a81",
+              "fact_id": "a4fb83c1dc415075e82a0bcd5d003f0d5ae654e12ba2b9f65fa3c22df5f7f6e9",
+              "format": "numerical",
+              "source_document": "878b94c14067ddef8add2b3a17a7fd22339e9a719c9336aceedfeceac7ea605e",
+              "source_location": 2,
+              "citation": "power.pptx, slide 2",
+              "excerpt": "Power for a lamp transferring 20 joules in 2 seconds is 10 watts.",
+              "prompt": "Recall the missing numerical value from the source. Enter a number only; units remain in the statement. Hint: the source writes this value with 0 decimal places. It lies strictly between 9 and 11.\n\nPower for a lamp transferring 20 joules in 2 seconds is [____] watts.",
+              "verified_key": "10",
+              "response": "11"
+            },
+            {
+              "question_id": "6af1d286f75ac0436fe401b077e61acf2cfea01d4c87d4f385a3c3d0161b2249",
+              "fact_id": "5a19b745b0ad306d2e17bde70419fe691ebc65efc5aec15f768d882e9cf58058",
+              "format": "mcq",
+              "source_document": "878b94c14067ddef8add2b3a17a7fd22339e9a719c9336aceedfeceac7ea605e",
+              "source_location": 3,
+              "citation": "power.pptx, slide 3",
+              "excerpt": "Power for a lamp transferring 30 joules in 2 seconds is 15 watts.",
+              "prompt": "Which option completes this source statement exactly?\n\nPower for a lamp transferring 30 joules in 2 seconds is [____] watts.",
+              "verified_key": "15",
+              "response": "14"
+            }
+          ],
+          "status": "completed",
+          "mastery_after": {
+            "power": 0.4,
+            "kinetic energy": 0.6
+          },
+          "revision_priority": "power"
+        },
+        {
+          "number": 3,
+          "topic": "potential energy",
+          "difficulty": "easy",
+          "diagnostic": true,
+          "response_pattern": "110",
+          "questions": [
+            {
+              "question_id": "73cba6a526e919dd1f3dfd9f598d93084e12596a6f1bd10b2dd24781710a90fd",
+              "fact_id": "51c5df1b0c7001096741f7f76349290ef31372461cb2cbf7b78f956331c3a9f9",
+              "format": "mcq",
+              "source_document": "c9bdba498eeaaab862558ee5efdfd2879bff7619390d2f82724adbbf9cdabc08",
+              "source_location": 1,
+              "citation": "potential.pptx, slide 1",
+              "excerpt": "Using gravity 10 m/s squared, potential energy of a 1 kg book at height 1 m is 10 joules.",
+              "prompt": "Which option completes this source statement exactly?\n\nUsing gravity 10 m/s squared, potential energy of a 1 kg book at height 1 m is [____] joules.",
+              "verified_key": "10",
+              "response": "10"
+            },
+            {
+              "question_id": "a22119afac7915733151d0e6387042c2709bc3eea2820e6186779226dd46548d",
+              "fact_id": "e384002956baf7cf3424752729507c9892843eb7942be11defc1822885f14b3c",
+              "format": "numerical",
+              "source_document": "c9bdba498eeaaab862558ee5efdfd2879bff7619390d2f82724adbbf9cdabc08",
+              "source_location": 2,
+              "citation": "potential.pptx, slide 2",
+              "excerpt": "Using gravity 10 m/s squared, potential energy of a 1 kg book at height 2 m is 20 joules.",
+              "prompt": "Recall the missing numerical value from the source. Enter a number only; units remain in the statement. Hint: the source writes this value with 0 decimal places. It lies strictly between 18 and 22.\n\nUsing gravity 10 m/s squared, potential energy of a 1 kg book at height 2 m is [____] joules.",
+              "verified_key": "20",
+              "response": "20"
+            },
+            {
+              "question_id": "1578faab056fb33f8f40c1b48bf4df01b6a433a04bea4fbe448e00fe0ebe6b87",
+              "fact_id": "1bb97fd18fc0f76c60be1a180ba5aa9685012e094aa45b9d6c882ce4c12a4baa",
+              "format": "mcq",
+              "source_document": "c9bdba498eeaaab862558ee5efdfd2879bff7619390d2f82724adbbf9cdabc08",
+              "source_location": 3,
+              "citation": "potential.pptx, slide 3",
+              "excerpt": "Using gravity 10 m/s squared, potential energy of a 1 kg book at height 3 m is 30 joules.",
+              "prompt": "Which option completes this source statement exactly?\n\nUsing gravity 10 m/s squared, potential energy of a 1 kg book at height 3 m is [____] joules.",
+              "verified_key": "30",
+              "response": "31"
+            }
+          ],
+          "status": "completed",
+          "mastery_after": {
+            "power": 0.4,
+            "kinetic energy": 0.6,
+            "potential energy": 0.6
+          },
+          "revision_priority": "power"
+        },
+        {
+          "number": 4,
+          "topic": "kinetic energy",
+          "difficulty": "medium",
+          "diagnostic": false,
+          "response_pattern": "110",
+          "questions": [
+            {
+              "question_id": "a0de1ffade55a2c58dcd52c2dcc94a40a9591cb8cee027a50d9173b5830ec146",
+              "fact_id": "b4199b1f3a5db823223f1151d5585f23b49bdd9810991b386723338741a89dbb",
+              "format": "mcq",
+              "source_document": "026a17cf6e71c96b7f63ae1d34fbf7c9473deebbe000a2903aba97e2cc7a6ac6",
+              "source_location": 4,
+              "citation": "kinetic.pdf, page 4",
+              "excerpt": "Kinetic energy of a 2 kg cart moving at 4 m/s is 16 joules.",
+              "prompt": "Which option completes this source statement exactly?\n\nKinetic energy of a 2 kg cart moving at 4 m/s is [____] joules.",
+              "verified_key": "16",
+              "response": "16"
+            },
+            {
+              "question_id": "1e2ba7c68153c7e164a7b7630d44a4c8a029239823de4bb446f31cd06a447c7e",
+              "fact_id": "93b4fbe8a24a79fbb9823d6186d48882a0f7dbad67d410459b6e680d958deedb",
+              "format": "numerical",
+              "source_document": "026a17cf6e71c96b7f63ae1d34fbf7c9473deebbe000a2903aba97e2cc7a6ac6",
+              "source_location": 5,
+              "citation": "kinetic.pdf, page 5",
+              "excerpt": "Kinetic energy of a 2 kg cart moving at 5 m/s is 25 joules.",
+              "prompt": "Recall the missing numerical value from the source. Enter a number only; units remain in the statement. Hint: the source writes this value with 0 decimal places.\n\nKinetic energy of a 2 kg cart moving at 5 m/s is [____] joules.",
+              "verified_key": "25",
+              "response": "25"
+            },
+            {
+              "question_id": "4bb8f000733cfb280fa0881d7eee7b38873368cf561d910ed26c8e11fd693cbe",
+              "fact_id": "ca1d0fb07e0adff3c678e272ba20fbb9b2d1daafc706f0856d97fa010aa02132",
+              "format": "mcq",
+              "source_document": "026a17cf6e71c96b7f63ae1d34fbf7c9473deebbe000a2903aba97e2cc7a6ac6",
+              "source_location": 6,
+              "citation": "kinetic.pdf, page 6",
+              "excerpt": "Kinetic energy of a 2 kg cart moving at 6 m/s is 36 joules.",
+              "prompt": "Which option completes this source statement exactly?\n\nKinetic energy of a 2 kg cart moving at 6 m/s is [____] joules.",
+              "verified_key": "36",
+              "response": "38"
+            }
+          ],
+          "status": "completed",
+          "mastery_after": {
+            "power": 0.4,
+            "potential energy": 0.6,
+            "kinetic energy": 0.625
+          },
+          "revision_priority": "power"
+        },
+        {
+          "number": 5,
+          "topic": "power",
+          "difficulty": "easy",
+          "diagnostic": false,
+          "response_pattern": "111",
+          "questions": [
+            {
+              "question_id": "86c1513a0547bb4e7b42798a7238d0dcc3d13fd9387dcb88bb3bd49bd58bb333",
+              "fact_id": "9c226bbe157e364c497cac199d815666330db003d65f803121ee4c9150d65819",
+              "format": "mcq",
+              "source_document": "878b94c14067ddef8add2b3a17a7fd22339e9a719c9336aceedfeceac7ea605e",
+              "source_location": 4,
+              "citation": "power.pptx, slide 4",
+              "excerpt": "Power for a lamp transferring 40 joules in 2 seconds is 20 watts.",
+              "prompt": "Which option completes this source statement exactly?\n\nPower for a lamp transferring 40 joules in 2 seconds is [____] watts.",
+              "verified_key": "20",
+              "response": "20"
+            },
+            {
+              "question_id": "d37732d4539a6d10e77f92e56cc2a963aefc7d79a0cdaa6632525b17dfdf4fff",
+              "fact_id": "c2f290370d6ed9878abb5ae667dfe3b9a3abb5e71bc006e9124bda22851d0d63",
+              "format": "numerical",
+              "source_document": "878b94c14067ddef8add2b3a17a7fd22339e9a719c9336aceedfeceac7ea605e",
+              "source_location": 5,
+              "citation": "power.pptx, slide 5",
+              "excerpt": "Power for a lamp transferring 50 joules in 2 seconds is 25 watts.",
+              "prompt": "Recall the missing numerical value from the source. Enter a number only; units remain in the statement. Hint: the source writes this value with 0 decimal places. It lies strictly between 22.5 and 27.5.\n\nPower for a lamp transferring 50 joules in 2 seconds is [____] watts.",
+              "verified_key": "25",
+              "response": "25"
+            },
+            {
+              "question_id": "a6de4deb092b45cf34ece8c02a3987e720e9db63956be0b614cee82560fd9460",
+              "fact_id": "68261464945757097abf8f99cfadc9b4f892d672825d2e7019601cdfc4d27a31",
+              "format": "mcq",
+              "source_document": "878b94c14067ddef8add2b3a17a7fd22339e9a719c9336aceedfeceac7ea605e",
+              "source_location": 6,
+              "citation": "power.pptx, slide 6",
+              "excerpt": "Power for a lamp transferring 60 joules in 2 seconds is 30 watts.",
+              "prompt": "Which option completes this source statement exactly?\n\nPower for a lamp transferring 60 joules in 2 seconds is [____] watts.",
+              "verified_key": "30",
+              "response": "30"
+            }
+          ],
+          "status": "completed",
+          "mastery_after": {
+            "potential energy": 0.6,
+            "kinetic energy": 0.625,
+            "power": 0.625
+          },
+          "revision_priority": "potential energy"
+        },
+        {
+          "number": 6,
+          "topic": "potential energy",
+          "difficulty": "medium",
+          "diagnostic": false,
+          "response_pattern": "110",
+          "questions": [
+            {
+              "question_id": "3e9d4595cfa022ee4aeabc0e8a3a5442845533639e117b00a1edcc15832c6ef9",
+              "fact_id": "d024f37a9a178dc867cdcd4400a70833a035973bd825b719db254c044c80dfe6",
+              "format": "mcq",
+              "source_document": "c9bdba498eeaaab862558ee5efdfd2879bff7619390d2f82724adbbf9cdabc08",
+              "source_location": 4,
+              "citation": "potential.pptx, slide 4",
+              "excerpt": "Using gravity 10 m/s squared, potential energy of a 1 kg book at height 4 m is 40 joules.",
+              "prompt": "Which option completes this source statement exactly?\n\nUsing gravity 10 m/s squared, potential energy of a 1 kg book at height 4 m is [____] joules.",
+              "verified_key": "40",
+              "response": "40"
+            },
+            {
+              "question_id": "3335bf17574a52b94a296d89829762ce9b7dbfe9ee0672b9f91017a5dcab5d0c",
+              "fact_id": "e946c2f0aa85299513c319246c516d61eb302e5a1af4b8221cb461e5fea07e6c",
+              "format": "numerical",
+              "source_document": "c9bdba498eeaaab862558ee5efdfd2879bff7619390d2f82724adbbf9cdabc08",
+              "source_location": 5,
+              "citation": "potential.pptx, slide 5",
+              "excerpt": "Using gravity 10 m/s squared, potential energy of a 1 kg book at height 5 m is 50 joules.",
+              "prompt": "Recall the missing numerical value from the source. Enter a number only; units remain in the statement. Hint: the source writes this value with 0 decimal places.\n\nUsing gravity 10 m/s squared, potential energy of a 1 kg book at height 5 m is [____] joules.",
+              "verified_key": "50",
+              "response": "50"
+            },
+            {
+              "question_id": "a735f1cb701064d2139e4048a22fc66b04352071b8c5cd559b794e0d7f2b5eb6",
+              "fact_id": "672cf2192cb7db0a683bf9e8fca3836fb6e6b8cca0890621ab2726f2e0d7e6ac",
+              "format": "mcq",
+              "source_document": "c9bdba498eeaaab862558ee5efdfd2879bff7619390d2f82724adbbf9cdabc08",
+              "source_location": 6,
+              "citation": "potential.pptx, slide 6",
+              "excerpt": "Using gravity 10 m/s squared, potential energy of a 1 kg book at height 6 m is 60 joules.",
+              "prompt": "Which option completes this source statement exactly?\n\nUsing gravity 10 m/s squared, potential energy of a 1 kg book at height 6 m is [____] joules.",
+              "verified_key": "60",
+              "response": "59"
+            }
+          ],
+          "status": "completed",
+          "mastery_after": {
+            "kinetic energy": 0.625,
+            "potential energy": 0.625,
+            "power": 0.625
+          },
+          "revision_priority": "kinetic energy"
+        },
+        {
+          "number": 7,
+          "topic": "kinetic energy",
+          "difficulty": "medium",
+          "diagnostic": false,
+          "response_pattern": "100",
+          "questions": [
+            {
+              "question_id": "bef4fd2e368dfcc98d8e8308c39eed10e0233fbab87d4db2d6baf491240a7862",
+              "fact_id": "abb8e755075b1ed57537d6f0c630189576e3e17b358f5207ba798f4b43a8a36a",
+              "format": "mcq",
+              "source_document": "026a17cf6e71c96b7f63ae1d34fbf7c9473deebbe000a2903aba97e2cc7a6ac6",
+              "source_location": 7,
+              "citation": "kinetic.pdf, page 7",
+              "excerpt": "Kinetic energy of a 2 kg cart moving at 7 m/s is 49 joules.",
+              "prompt": "Which option completes this source statement exactly?\n\nKinetic energy of a 2 kg cart moving at 7 m/s is [____] joules.",
+              "verified_key": "49",
+              "response": "49"
+            },
+            {
+              "question_id": "880941d775a9fa660ac50092e8ce016f811bfdfefe801f6f8228721125a7d265",
+              "fact_id": "41ae6c0070259ecb9b8e2c164d0bea4f57897239a48ff471870201e51869466c",
+              "format": "numerical",
+              "source_document": "026a17cf6e71c96b7f63ae1d34fbf7c9473deebbe000a2903aba97e2cc7a6ac6",
+              "source_location": 8,
+              "citation": "kinetic.pdf, page 8",
+              "excerpt": "Kinetic energy of a 2 kg cart moving at 8 m/s is 64 joules.",
+              "prompt": "Recall the missing numerical value from the source. Enter a number only; units remain in the statement. Hint: the source writes this value with 0 decimal places.\n\nKinetic energy of a 2 kg cart moving at 8 m/s is [____] joules.",
+              "verified_key": "64",
+              "response": "65"
+            },
+            {
+              "question_id": "3f66210f76120171637ed8969c9311ace0daafc7daa3f75991243a1333fb3531",
+              "fact_id": "a5d9f3fe4c282da3e3126f0840a67a27f739db791381ebb4d964f090f26d891c",
+              "format": "mcq",
+              "source_document": "026a17cf6e71c96b7f63ae1d34fbf7c9473deebbe000a2903aba97e2cc7a6ac6",
+              "source_location": 9,
+              "citation": "kinetic.pdf, page 9",
+              "excerpt": "Kinetic energy of a 2 kg cart moving at 9 m/s is 81 joules.",
+              "prompt": "Which option completes this source statement exactly?\n\nKinetic energy of a 2 kg cart moving at 9 m/s is [____] joules.",
+              "verified_key": "81",
+              "response": "82"
+            }
+          ],
+          "status": "completed",
+          "mastery_after": {
+            "kinetic energy": 0.5454545454545454,
+            "potential energy": 0.625,
+            "power": 0.625
+          },
+          "revision_priority": "kinetic energy"
+        },
+        {
+          "number": 8,
+          "topic": "power",
+          "difficulty": "medium",
+          "diagnostic": false,
+          "response_pattern": "111",
+          "questions": [
+            {
+              "question_id": "1a7fd9166bb4eb278f56b3ee46327274e66d09b97ee1f58df3cb0771eb4a904b",
+              "fact_id": "353a2704bf3e084eaeb3456f8315fcf12112c7a2fff34f0167c935820c536825",
+              "format": "mcq",
+              "source_document": "878b94c14067ddef8add2b3a17a7fd22339e9a719c9336aceedfeceac7ea605e",
+              "source_location": 7,
+              "citation": "power.pptx, slide 7",
+              "excerpt": "Power for a lamp transferring 70 joules in 2 seconds is 35 watts.",
+              "prompt": "Which option completes this source statement exactly?\n\nPower for a lamp transferring 70 joules in 2 seconds is [____] watts.",
+              "verified_key": "35",
+              "response": "35"
+            },
+            {
+              "question_id": "6246497cbc7084c95f3fb56489a0d61bc4e4d86d786e0f1ca6e8955a6a94a96a",
+              "fact_id": "20cd706f87b4a8b3172670036a66029f71e4d14885b45d36ec9c69cddefa97f1",
+              "format": "numerical",
+              "source_document": "878b94c14067ddef8add2b3a17a7fd22339e9a719c9336aceedfeceac7ea605e",
+              "source_location": 8,
+              "citation": "power.pptx, slide 8",
+              "excerpt": "Power for a lamp transferring 80 joules in 2 seconds is 40 watts.",
+              "prompt": "Recall the missing numerical value from the source. Enter a number only; units remain in the statement. Hint: the source writes this value with 0 decimal places.\n\nPower for a lamp transferring 80 joules in 2 seconds is [____] watts.",
+              "verified_key": "40",
+              "response": "40"
+            },
+            {
+              "question_id": "5a112936db7659983634a88edbb380f8d4a1c6b9792c9c37ec079545cc23e301",
+              "fact_id": "689d5359ee1afd9332bf19a2b7523b411017cb35fcbd716cfeabbbcf6b7b5d2f",
+              "format": "mcq",
+              "source_document": "878b94c14067ddef8add2b3a17a7fd22339e9a719c9336aceedfeceac7ea605e",
+              "source_location": 9,
+              "citation": "power.pptx, slide 9",
+              "excerpt": "Power for a lamp transferring 90 joules in 2 seconds is 45 watts.",
+              "prompt": "Which option completes this source statement exactly?\n\nPower for a lamp transferring 90 joules in 2 seconds is [____] watts.",
+              "verified_key": "45",
+              "response": "45"
+            }
+          ],
+          "status": "completed",
+          "mastery_after": {
+            "kinetic energy": 0.5454545454545454,
+            "potential energy": 0.625,
+            "power": 0.7272727272727273
+          },
+          "revision_priority": "kinetic energy"
+        },
+        {
+          "number": 9,
+          "topic": "potential energy",
+          "difficulty": "medium",
+          "diagnostic": false,
+          "response_pattern": "111",
+          "questions": [
+            {
+              "question_id": "4a208539c52fc046b47ab971ec90d97324bef0cd99121e4340cb5cb83802f536",
+              "fact_id": "b8125fce27718aa6ce34d70323c5ba6703fc7bc53e9526bfdd73c49021dd0664",
+              "format": "mcq",
+              "source_document": "c9bdba498eeaaab862558ee5efdfd2879bff7619390d2f82724adbbf9cdabc08",
+              "source_location": 7,
+              "citation": "potential.pptx, slide 7",
+              "excerpt": "Using gravity 10 m/s squared, potential energy of a 1 kg book at height 7 m is 70 joules.",
+              "prompt": "Which option completes this source statement exactly?\n\nUsing gravity 10 m/s squared, potential energy of a 1 kg book at height 7 m is [____] joules.",
+              "verified_key": "70",
+              "response": "70"
+            },
+            {
+              "question_id": "4b8be3f2986e73dcc63d9af7e7c12a708a686e88de376dbe3aa9d8dbf368f58d",
+              "fact_id": "2878fc42f815106cd8f302d2a5eca064a679c0bc63455df73c2f5042c44ae298",
+              "format": "numerical",
+              "source_document": "c9bdba498eeaaab862558ee5efdfd2879bff7619390d2f82724adbbf9cdabc08",
+              "source_location": 8,
+              "citation": "potential.pptx, slide 8",
+              "excerpt": "Using gravity 10 m/s squared, potential energy of a 1 kg book at height 8 m is 80 joules.",
+              "prompt": "Recall the missing numerical value from the source. Enter a number only; units remain in the statement. Hint: the source writes this value with 0 decimal places.\n\nUsing gravity 10 m/s squared, potential energy of a 1 kg book at height 8 m is [____] joules.",
+              "verified_key": "80",
+              "response": "80"
+            },
+            {
+              "question_id": "c2edae23c19881d42767929f085215a9c2d92c16b6d63843c7b9d637f6cfc491",
+              "fact_id": "314ed37acdc87d497a6075a81de3439114701a293f75be940c9e094d905728ff",
+              "format": "mcq",
+              "source_document": "c9bdba498eeaaab862558ee5efdfd2879bff7619390d2f82724adbbf9cdabc08",
+              "source_location": 9,
+              "citation": "potential.pptx, slide 9",
+              "excerpt": "Using gravity 10 m/s squared, potential energy of a 1 kg book at height 9 m is 90 joules.",
+              "prompt": "Which option completes this source statement exactly?\n\nUsing gravity 10 m/s squared, potential energy of a 1 kg book at height 9 m is [____] joules.",
+              "verified_key": "90",
+              "response": "90"
+            }
+          ],
+          "status": "completed",
+          "mastery_after": {
+            "kinetic energy": 0.5454545454545454,
+            "potential energy": 0.7272727272727273,
+            "power": 0.7272727272727273
+          },
+          "revision_priority": "kinetic energy"
+        }
+      ]
+    },
+    {
+      "name": "Advanced",
+      "sessions_completed": 9,
+      "sessions_requested": 9,
+      "questions_completed": 27,
+      "questions_requested": 27,
+      "repeated_facts_ever": 0,
+      "repeated_facts_within_two_sessions": 0,
+      "repeat_denominator": 27,
+      "recommendation_changes": 1,
+      "recommendation_transition_denominator": 8,
+      "difficulty_sequence": [
+        "easy",
+        "easy",
+        "easy",
+        "hard",
+        "hard",
+        "medium",
+        "hard",
+        "hard",
+        "hard"
+      ],
+      "final_mastery": {
+        "potential energy": {
+          "estimate": 0.8181818181818182,
+          "correct": 8,
+          "incorrect": 1,
+          "review": 0
+        },
+        "kinetic energy": {
+          "estimate": 0.9090909090909091,
+          "correct": 9,
+          "incorrect": 0,
+          "review": 0
+        },
+        "power": {
+          "estimate": 0.9090909090909091,
+          "correct": 9,
+          "incorrect": 0,
+          "review": 0
+        }
+      },
+      "restart_preserved": true,
+      "sessions": [
+        {
+          "number": 1,
+          "topic": "kinetic energy",
+          "difficulty": "easy",
+          "diagnostic": true,
+          "response_pattern": "111",
+          "questions": [
+            {
+              "question_id": "9c0519f6e79f1bcf18588cd8446445dab3ff159b5aac8226dc1c48b9ca0c107e",
+              "fact_id": "5b0de9977e01b9c911a262dccd51d398d4030334f1b0e791eaf9b1cc45de4f86",
+              "format": "mcq",
+              "source_document": "026a17cf6e71c96b7f63ae1d34fbf7c9473deebbe000a2903aba97e2cc7a6ac6",
+              "source_location": 1,
+              "citation": "kinetic.pdf, page 1",
+              "excerpt": "Kinetic energy of a 2 kg cart moving at 1 m/s is 1 joules.",
+              "prompt": "Which option completes this source statement exactly?\n\nKinetic energy of a 2 kg cart moving at 1 m/s is [____] joules.",
+              "verified_key": "1",
+              "response": "1"
+            },
+            {
+              "question_id": "66461f50e3e6b0c5b0555e09f3dedff989c4eacc8f12bf559776806ef7e32475",
+              "fact_id": "ff59ccf4436072c8f6e2fe8d9a1ba406b6fbb98ffb31d64524852275e4cede95",
+              "format": "numerical",
+              "source_document": "026a17cf6e71c96b7f63ae1d34fbf7c9473deebbe000a2903aba97e2cc7a6ac6",
+              "source_location": 2,
+              "citation": "kinetic.pdf, page 2",
+              "excerpt": "Kinetic energy of a 2 kg cart moving at 2 m/s is 4 joules.",
+              "prompt": "Recall the missing numerical value from the source. Enter a number only; units remain in the statement. Hint: the source writes this value with 0 decimal places. It lies strictly between 3 and 5.\n\nKinetic energy of a 2 kg cart moving at 2 m/s is [____] joules.",
+              "verified_key": "4",
+              "response": "4"
+            },
+            {
+              "question_id": "4a95e384d414dd9cd71347c20a13df859e2484fb06f80691b0e4e6fb4288b639",
+              "fact_id": "e957dff2f5f1e8bc3ebeb6ec760ed9f8e228e1381a1bb8cf465ff2fea7a3cadd",
+              "format": "mcq",
+              "source_document": "026a17cf6e71c96b7f63ae1d34fbf7c9473deebbe000a2903aba97e2cc7a6ac6",
+              "source_location": 3,
+              "citation": "kinetic.pdf, page 3",
+              "excerpt": "Kinetic energy of a 2 kg cart moving at 3 m/s is 9 joules.",
+              "prompt": "Which option completes this source statement exactly?\n\nKinetic energy of a 2 kg cart moving at 3 m/s is [____] joules.",
+              "verified_key": "9",
+              "response": "9"
+            }
+          ],
+          "status": "completed",
+          "mastery_after": {
+            "kinetic energy": 0.8
+          },
+          "revision_priority": "kinetic energy"
+        },
+        {
+          "number": 2,
+          "topic": "power",
+          "difficulty": "easy",
+          "diagnostic": true,
+          "response_pattern": "111",
+          "questions": [
+            {
+              "question_id": "5808eb93b63453b40a0f17e553d0d4ec84cf47e0518cfe695774be15d4c81bdf",
+              "fact_id": "2c28402005f006f2feecf22f70c158896685cf1f86d72deffe23c3cca90eac5c",
+              "format": "mcq",
+              "source_document": "878b94c14067ddef8add2b3a17a7fd22339e9a719c9336aceedfeceac7ea605e",
+              "source_location": 1,
+              "citation": "power.pptx, slide 1",
+              "excerpt": "Power for a lamp transferring 10 joules in 2 seconds is 5 watts.",
+              "prompt": "Which option completes this source statement exactly?\n\nPower for a lamp transferring 10 joules in 2 seconds is [____] watts.",
+              "verified_key": "5",
+              "response": "5"
+            },
+            {
+              "question_id": "21a7161840b3b142e5d648b6465d3513516c91c6db7526cd5a65c4cade076a81",
+              "fact_id": "a4fb83c1dc415075e82a0bcd5d003f0d5ae654e12ba2b9f65fa3c22df5f7f6e9",
+              "format": "numerical",
+              "source_document": "878b94c14067ddef8add2b3a17a7fd22339e9a719c9336aceedfeceac7ea605e",
+              "source_location": 2,
+              "citation": "power.pptx, slide 2",
+              "excerpt": "Power for a lamp transferring 20 joules in 2 seconds is 10 watts.",
+              "prompt": "Recall the missing numerical value from the source. Enter a number only; units remain in the statement. Hint: the source writes this value with 0 decimal places. It lies strictly between 9 and 11.\n\nPower for a lamp transferring 20 joules in 2 seconds is [____] watts.",
+              "verified_key": "10",
+              "response": "10"
+            },
+            {
+              "question_id": "6af1d286f75ac0436fe401b077e61acf2cfea01d4c87d4f385a3c3d0161b2249",
+              "fact_id": "5a19b745b0ad306d2e17bde70419fe691ebc65efc5aec15f768d882e9cf58058",
+              "format": "mcq",
+              "source_document": "878b94c14067ddef8add2b3a17a7fd22339e9a719c9336aceedfeceac7ea605e",
+              "source_location": 3,
+              "citation": "power.pptx, slide 3",
+              "excerpt": "Power for a lamp transferring 30 joules in 2 seconds is 15 watts.",
+              "prompt": "Which option completes this source statement exactly?\n\nPower for a lamp transferring 30 joules in 2 seconds is [____] watts.",
+              "verified_key": "15",
+              "response": "15"
+            }
+          ],
+          "status": "completed",
+          "mastery_after": {
+            "kinetic energy": 0.8,
+            "power": 0.8
+          },
+          "revision_priority": "kinetic energy"
+        },
+        {
+          "number": 3,
+          "topic": "potential energy",
+          "difficulty": "easy",
+          "diagnostic": true,
+          "response_pattern": "110",
+          "questions": [
+            {
+              "question_id": "73cba6a526e919dd1f3dfd9f598d93084e12596a6f1bd10b2dd24781710a90fd",
+              "fact_id": "51c5df1b0c7001096741f7f76349290ef31372461cb2cbf7b78f956331c3a9f9",
+              "format": "mcq",
+              "source_document": "c9bdba498eeaaab862558ee5efdfd2879bff7619390d2f82724adbbf9cdabc08",
+              "source_location": 1,
+              "citation": "potential.pptx, slide 1",
+              "excerpt": "Using gravity 10 m/s squared, potential energy of a 1 kg book at height 1 m is 10 joules.",
+              "prompt": "Which option completes this source statement exactly?\n\nUsing gravity 10 m/s squared, potential energy of a 1 kg book at height 1 m is [____] joules.",
+              "verified_key": "10",
+              "response": "10"
+            },
+            {
+              "question_id": "a22119afac7915733151d0e6387042c2709bc3eea2820e6186779226dd46548d",
+              "fact_id": "e384002956baf7cf3424752729507c9892843eb7942be11defc1822885f14b3c",
+              "format": "numerical",
+              "source_document": "c9bdba498eeaaab862558ee5efdfd2879bff7619390d2f82724adbbf9cdabc08",
+              "source_location": 2,
+              "citation": "potential.pptx, slide 2",
+              "excerpt": "Using gravity 10 m/s squared, potential energy of a 1 kg book at height 2 m is 20 joules.",
+              "prompt": "Recall the missing numerical value from the source. Enter a number only; units remain in the statement. Hint: the source writes this value with 0 decimal places. It lies strictly between 18 and 22.\n\nUsing gravity 10 m/s squared, potential energy of a 1 kg book at height 2 m is [____] joules.",
+              "verified_key": "20",
+              "response": "20"
+            },
+            {
+              "question_id": "1578faab056fb33f8f40c1b48bf4df01b6a433a04bea4fbe448e00fe0ebe6b87",
+              "fact_id": "1bb97fd18fc0f76c60be1a180ba5aa9685012e094aa45b9d6c882ce4c12a4baa",
+              "format": "mcq",
+              "source_document": "c9bdba498eeaaab862558ee5efdfd2879bff7619390d2f82724adbbf9cdabc08",
+              "source_location": 3,
+              "citation": "potential.pptx, slide 3",
+              "excerpt": "Using gravity 10 m/s squared, potential energy of a 1 kg book at height 3 m is 30 joules.",
+              "prompt": "Which option completes this source statement exactly?\n\nUsing gravity 10 m/s squared, potential energy of a 1 kg book at height 3 m is [____] joules.",
+              "verified_key": "30",
+              "response": "31"
+            }
+          ],
+          "status": "completed",
+          "mastery_after": {
+            "potential energy": 0.6,
+            "kinetic energy": 0.8,
+            "power": 0.8
+          },
+          "revision_priority": "potential energy"
+        },
+        {
+          "number": 4,
+          "topic": "kinetic energy",
+          "difficulty": "hard",
+          "diagnostic": false,
+          "response_pattern": "111",
+          "questions": [
+            {
+              "question_id": "0e706d12db6d03143c3490f3fd2d24f65b17678a652eaa6fe075b3402fad09bb",
+              "fact_id": "b4199b1f3a5db823223f1151d5585f23b49bdd9810991b386723338741a89dbb",
+              "format": "mcq",
+              "source_document": "026a17cf6e71c96b7f63ae1d34fbf7c9473deebbe000a2903aba97e2cc7a6ac6",
+              "source_location": 4,
+              "citation": "kinetic.pdf, page 4",
+              "excerpt": "Kinetic energy of a 2 kg cart moving at 4 m/s is 16 joules.",
+              "prompt": "Which option completes this source statement exactly?\n\nKinetic energy of a 2 kg cart moving at 4 m/s is [____] joules.",
+              "verified_key": "16",
+              "response": "16"
+            },
+            {
+              "question_id": "bd836c0541c77567771aace0d00b7dde2869890cea519fa793a96d336081e373",
+              "fact_id": "93b4fbe8a24a79fbb9823d6186d48882a0f7dbad67d410459b6e680d958deedb",
+              "format": "numerical",
+              "source_document": "026a17cf6e71c96b7f63ae1d34fbf7c9473deebbe000a2903aba97e2cc7a6ac6",
+              "source_location": 5,
+              "citation": "kinetic.pdf, page 5",
+              "excerpt": "Kinetic energy of a 2 kg cart moving at 5 m/s is 25 joules.",
+              "prompt": "Recall the missing numerical value from the source. Enter a number only; units remain in the statement.\n\nKinetic energy of a 2 kg cart moving at 5 m/s is [____] joules.",
+              "verified_key": "25",
+              "response": "25"
+            },
+            {
+              "question_id": "7197e9848e96e9549979080cf366d8c7c29c314be5193940fd4f9ff335465dad",
+              "fact_id": "ca1d0fb07e0adff3c678e272ba20fbb9b2d1daafc706f0856d97fa010aa02132",
+              "format": "mcq",
+              "source_document": "026a17cf6e71c96b7f63ae1d34fbf7c9473deebbe000a2903aba97e2cc7a6ac6",
+              "source_location": 6,
+              "citation": "kinetic.pdf, page 6",
+              "excerpt": "Kinetic energy of a 2 kg cart moving at 6 m/s is 36 joules.",
+              "prompt": "Which option completes this source statement exactly?\n\nKinetic energy of a 2 kg cart moving at 6 m/s is [____] joules.",
+              "verified_key": "36",
+              "response": "36"
+            }
+          ],
+          "status": "completed",
+          "mastery_after": {
+            "potential energy": 0.6,
+            "power": 0.8,
+            "kinetic energy": 0.875
+          },
+          "revision_priority": "potential energy"
+        },
+        {
+          "number": 5,
+          "topic": "power",
+          "difficulty": "hard",
+          "diagnostic": false,
+          "response_pattern": "111",
+          "questions": [
+            {
+              "question_id": "45fdb1caab615e9e719a24a936691e0dea6e7e6a8cc8ee0471c4efac80800636",
+              "fact_id": "9c226bbe157e364c497cac199d815666330db003d65f803121ee4c9150d65819",
+              "format": "mcq",
+              "source_document": "878b94c14067ddef8add2b3a17a7fd22339e9a719c9336aceedfeceac7ea605e",
+              "source_location": 4,
+              "citation": "power.pptx, slide 4",
+              "excerpt": "Power for a lamp transferring 40 joules in 2 seconds is 20 watts.",
+              "prompt": "Which option completes this source statement exactly?\n\nPower for a lamp transferring 40 joules in 2 seconds is [____] watts.",
+              "verified_key": "20",
+              "response": "20"
+            },
+            {
+              "question_id": "550c3f083cb08ea99f7e7c515c88d2f5b6d264451291425d5eba4d7f9f107cb9",
+              "fact_id": "c2f290370d6ed9878abb5ae667dfe3b9a3abb5e71bc006e9124bda22851d0d63",
+              "format": "numerical",
+              "source_document": "878b94c14067ddef8add2b3a17a7fd22339e9a719c9336aceedfeceac7ea605e",
+              "source_location": 5,
+              "citation": "power.pptx, slide 5",
+              "excerpt": "Power for a lamp transferring 50 joules in 2 seconds is 25 watts.",
+              "prompt": "Recall the missing numerical value from the source. Enter a number only; units remain in the statement.\n\nPower for a lamp transferring 50 joules in 2 seconds is [____] watts.",
+              "verified_key": "25",
+              "response": "25"
+            },
+            {
+              "question_id": "8175ad591c7833db6e8ebfdbecdeadfe0d4140e33f1d9cbf44870e86f85b6cca",
+              "fact_id": "68261464945757097abf8f99cfadc9b4f892d672825d2e7019601cdfc4d27a31",
+              "format": "mcq",
+              "source_document": "878b94c14067ddef8add2b3a17a7fd22339e9a719c9336aceedfeceac7ea605e",
+              "source_location": 6,
+              "citation": "power.pptx, slide 6",
+              "excerpt": "Power for a lamp transferring 60 joules in 2 seconds is 30 watts.",
+              "prompt": "Which option completes this source statement exactly?\n\nPower for a lamp transferring 60 joules in 2 seconds is [____] watts.",
+              "verified_key": "30",
+              "response": "30"
+            }
+          ],
+          "status": "completed",
+          "mastery_after": {
+            "potential energy": 0.6,
+            "kinetic energy": 0.875,
+            "power": 0.875
+          },
+          "revision_priority": "potential energy"
+        },
+        {
+          "number": 6,
+          "topic": "potential energy",
+          "difficulty": "medium",
+          "diagnostic": false,
+          "response_pattern": "111",
+          "questions": [
+            {
+              "question_id": "3e9d4595cfa022ee4aeabc0e8a3a5442845533639e117b00a1edcc15832c6ef9",
+              "fact_id": "d024f37a9a178dc867cdcd4400a70833a035973bd825b719db254c044c80dfe6",
+              "format": "mcq",
+              "source_document": "c9bdba498eeaaab862558ee5efdfd2879bff7619390d2f82724adbbf9cdabc08",
+              "source_location": 4,
+              "citation": "potential.pptx, slide 4",
+              "excerpt": "Using gravity 10 m/s squared, potential energy of a 1 kg book at height 4 m is 40 joules.",
+              "prompt": "Which option completes this source statement exactly?\n\nUsing gravity 10 m/s squared, potential energy of a 1 kg book at height 4 m is [____] joules.",
+              "verified_key": "40",
+              "response": "40"
+            },
+            {
+              "question_id": "3335bf17574a52b94a296d89829762ce9b7dbfe9ee0672b9f91017a5dcab5d0c",
+              "fact_id": "e946c2f0aa85299513c319246c516d61eb302e5a1af4b8221cb461e5fea07e6c",
+              "format": "numerical",
+              "source_document": "c9bdba498eeaaab862558ee5efdfd2879bff7619390d2f82724adbbf9cdabc08",
+              "source_location": 5,
+              "citation": "potential.pptx, slide 5",
+              "excerpt": "Using gravity 10 m/s squared, potential energy of a 1 kg book at height 5 m is 50 joules.",
+              "prompt": "Recall the missing numerical value from the source. Enter a number only; units remain in the statement. Hint: the source writes this value with 0 decimal places.\n\nUsing gravity 10 m/s squared, potential energy of a 1 kg book at height 5 m is [____] joules.",
+              "verified_key": "50",
+              "response": "50"
+            },
+            {
+              "question_id": "a735f1cb701064d2139e4048a22fc66b04352071b8c5cd559b794e0d7f2b5eb6",
+              "fact_id": "672cf2192cb7db0a683bf9e8fca3836fb6e6b8cca0890621ab2726f2e0d7e6ac",
+              "format": "mcq",
+              "source_document": "c9bdba498eeaaab862558ee5efdfd2879bff7619390d2f82724adbbf9cdabc08",
+              "source_location": 6,
+              "citation": "potential.pptx, slide 6",
+              "excerpt": "Using gravity 10 m/s squared, potential energy of a 1 kg book at height 6 m is 60 joules.",
+              "prompt": "Which option completes this source statement exactly?\n\nUsing gravity 10 m/s squared, potential energy of a 1 kg book at height 6 m is [____] joules.",
+              "verified_key": "60",
+              "response": "60"
+            }
+          ],
+          "status": "completed",
+          "mastery_after": {
+            "potential energy": 0.75,
+            "kinetic energy": 0.875,
+            "power": 0.875
+          },
+          "revision_priority": "potential energy"
+        },
+        {
+          "number": 7,
+          "topic": "kinetic energy",
+          "difficulty": "hard",
+          "diagnostic": false,
+          "response_pattern": "111",
+          "questions": [
+            {
+              "question_id": "0a04c1764d36e9675e55d3f3c0dc9827f71bd5dd3d6c9125e361f5f0e6c85bb8",
+              "fact_id": "abb8e755075b1ed57537d6f0c630189576e3e17b358f5207ba798f4b43a8a36a",
+              "format": "mcq",
+              "source_document": "026a17cf6e71c96b7f63ae1d34fbf7c9473deebbe000a2903aba97e2cc7a6ac6",
+              "source_location": 7,
+              "citation": "kinetic.pdf, page 7",
+              "excerpt": "Kinetic energy of a 2 kg cart moving at 7 m/s is 49 joules.",
+              "prompt": "Which option completes this source statement exactly?\n\nKinetic energy of a 2 kg cart moving at 7 m/s is [____] joules.",
+              "verified_key": "49",
+              "response": "49"
+            },
+            {
+              "question_id": "103fd5bcf8e0f34270c87b0e0706a40c34865d7c6ac6c676aa712a80b45ad128",
+              "fact_id": "41ae6c0070259ecb9b8e2c164d0bea4f57897239a48ff471870201e51869466c",
+              "format": "numerical",
+              "source_document": "026a17cf6e71c96b7f63ae1d34fbf7c9473deebbe000a2903aba97e2cc7a6ac6",
+              "source_location": 8,
+              "citation": "kinetic.pdf, page 8",
+              "excerpt": "Kinetic energy of a 2 kg cart moving at 8 m/s is 64 joules.",
+              "prompt": "Recall the missing numerical value from the source. Enter a number only; units remain in the statement.\n\nKinetic energy of a 2 kg cart moving at 8 m/s is [____] joules.",
+              "verified_key": "64",
+              "response": "64"
+            },
+            {
+              "question_id": "76c54de81404cc7a8c64d24ae366953fa6bd3f7420047915ebac2cf5e3ab8666",
+              "fact_id": "a5d9f3fe4c282da3e3126f0840a67a27f739db791381ebb4d964f090f26d891c",
+              "format": "mcq",
+              "source_document": "026a17cf6e71c96b7f63ae1d34fbf7c9473deebbe000a2903aba97e2cc7a6ac6",
+              "source_location": 9,
+              "citation": "kinetic.pdf, page 9",
+              "excerpt": "Kinetic energy of a 2 kg cart moving at 9 m/s is 81 joules.",
+              "prompt": "Which option completes this source statement exactly?\n\nKinetic energy of a 2 kg cart moving at 9 m/s is [____] joules.",
+              "verified_key": "81",
+              "response": "81"
+            }
+          ],
+          "status": "completed",
+          "mastery_after": {
+            "potential energy": 0.75,
+            "power": 0.875,
+            "kinetic energy": 0.9090909090909091
+          },
+          "revision_priority": "potential energy"
+        },
+        {
+          "number": 8,
+          "topic": "power",
+          "difficulty": "hard",
+          "diagnostic": false,
+          "response_pattern": "111",
+          "questions": [
+            {
+              "question_id": "c35f993391a08485fe4616f9aa6fb2e8da9b49b207e4c2f36b7019bcb332b196",
+              "fact_id": "353a2704bf3e084eaeb3456f8315fcf12112c7a2fff34f0167c935820c536825",
+              "format": "mcq",
+              "source_document": "878b94c14067ddef8add2b3a17a7fd22339e9a719c9336aceedfeceac7ea605e",
+              "source_location": 7,
+              "citation": "power.pptx, slide 7",
+              "excerpt": "Power for a lamp transferring 70 joules in 2 seconds is 35 watts.",
+              "prompt": "Which option completes this source statement exactly?\n\nPower for a lamp transferring 70 joules in 2 seconds is [____] watts.",
+              "verified_key": "35",
+              "response": "35"
+            },
+            {
+              "question_id": "d0d6e5c2de69c8050730af25b0f78ce48009619948c322de22a57b30dc387804",
+              "fact_id": "20cd706f87b4a8b3172670036a66029f71e4d14885b45d36ec9c69cddefa97f1",
+              "format": "numerical",
+              "source_document": "878b94c14067ddef8add2b3a17a7fd22339e9a719c9336aceedfeceac7ea605e",
+              "source_location": 8,
+              "citation": "power.pptx, slide 8",
+              "excerpt": "Power for a lamp transferring 80 joules in 2 seconds is 40 watts.",
+              "prompt": "Recall the missing numerical value from the source. Enter a number only; units remain in the statement.\n\nPower for a lamp transferring 80 joules in 2 seconds is [____] watts.",
+              "verified_key": "40",
+              "response": "40"
+            },
+            {
+              "question_id": "0a97e1f353d05fda8aa2c699cedeb6b9f04185b5dec139a0446a06df7130437d",
+              "fact_id": "689d5359ee1afd9332bf19a2b7523b411017cb35fcbd716cfeabbbcf6b7b5d2f",
+              "format": "mcq",
+              "source_document": "878b94c14067ddef8add2b3a17a7fd22339e9a719c9336aceedfeceac7ea605e",
+              "source_location": 9,
+              "citation": "power.pptx, slide 9",
+              "excerpt": "Power for a lamp transferring 90 joules in 2 seconds is 45 watts.",
+              "prompt": "Which option completes this source statement exactly?\n\nPower for a lamp transferring 90 joules in 2 seconds is [____] watts.",
+              "verified_key": "45",
+              "response": "45"
+            }
+          ],
+          "status": "completed",
+          "mastery_after": {
+            "potential energy": 0.75,
+            "kinetic energy": 0.9090909090909091,
+            "power": 0.9090909090909091
+          },
+          "revision_priority": "potential energy"
+        },
+        {
+          "number": 9,
+          "topic": "potential energy",
+          "difficulty": "hard",
+          "diagnostic": false,
+          "response_pattern": "111",
+          "questions": [
+            {
+              "question_id": "6c7dce8c96eb8b8c9f592cec64e574cb262739a9ea45c41488b85ec98148d5b0",
+              "fact_id": "b8125fce27718aa6ce34d70323c5ba6703fc7bc53e9526bfdd73c49021dd0664",
+              "format": "mcq",
+              "source_document": "c9bdba498eeaaab862558ee5efdfd2879bff7619390d2f82724adbbf9cdabc08",
+              "source_location": 7,
+              "citation": "potential.pptx, slide 7",
+              "excerpt": "Using gravity 10 m/s squared, potential energy of a 1 kg book at height 7 m is 70 joules.",
+              "prompt": "Which option completes this source statement exactly?\n\nUsing gravity 10 m/s squared, potential energy of a 1 kg book at height 7 m is [____] joules.",
+              "verified_key": "70",
+              "response": "70"
+            },
+            {
+              "question_id": "72dfa9d8104ca65cd8bc3cf8afa18152e56fd71e9d2f67d8cb16c00ed753d78d",
+              "fact_id": "2878fc42f815106cd8f302d2a5eca064a679c0bc63455df73c2f5042c44ae298",
+              "format": "numerical",
+              "source_document": "c9bdba498eeaaab862558ee5efdfd2879bff7619390d2f82724adbbf9cdabc08",
+              "source_location": 8,
+              "citation": "potential.pptx, slide 8",
+              "excerpt": "Using gravity 10 m/s squared, potential energy of a 1 kg book at height 8 m is 80 joules.",
+              "prompt": "Recall the missing numerical value from the source. Enter a number only; units remain in the statement.\n\nUsing gravity 10 m/s squared, potential energy of a 1 kg book at height 8 m is [____] joules.",
+              "verified_key": "80",
+              "response": "80"
+            },
+            {
+              "question_id": "7c815444659731732fc4dbdd082c014a178b4a667dae49b9442155b69b1e5580",
+              "fact_id": "314ed37acdc87d497a6075a81de3439114701a293f75be940c9e094d905728ff",
+              "format": "mcq",
+              "source_document": "c9bdba498eeaaab862558ee5efdfd2879bff7619390d2f82724adbbf9cdabc08",
+              "source_location": 9,
+              "citation": "potential.pptx, slide 9",
+              "excerpt": "Using gravity 10 m/s squared, potential energy of a 1 kg book at height 9 m is 90 joules.",
+              "prompt": "Which option completes this source statement exactly?\n\nUsing gravity 10 m/s squared, potential energy of a 1 kg book at height 9 m is [____] joules.",
+              "verified_key": "90",
+              "response": "90"
+            }
+          ],
+          "status": "completed",
+          "mastery_after": {
+            "potential energy": 0.8181818181818182,
+            "kinetic energy": 0.9090909090909091,
+            "power": 0.9090909090909091
+          },
+          "revision_priority": "potential energy"
+        }
+      ]
+    }
+  ],
+  "elapsed_seconds": 6.633
+}

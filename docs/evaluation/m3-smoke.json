@@ -1,0 +1,47 @@
+{
+  "documents": [
+    {
+      "name": "energy_notes.pdf",
+      "id": "f011c3e9094ba108cbcbeef5de107683b4e87c48b5b9e56b93421a6bca76b13b"
+    },
+    {
+      "name": "energy_slides.pptx",
+      "id": "1d9a315d43cfc9306b65a4e2a16db9b5b4a5a83b8d1833bbaa588c71c5e4649e"
+    }
+  ],
+  "formats": [
+    "mcq",
+    "short",
+    "numerical"
+  ],
+  "citations": [
+    "energy_slides.pptx, slide 1",
+    "energy_slides.pptx, slide 1",
+    "energy_notes.pdf, page 1"
+  ],
+  "grades": [
+    {
+      "status": "incorrect",
+      "score": 0,
+      "mastery_after": 0.3333333333333333
+    },
+    {
+      "status": "correct",
+      "score": 1,
+      "mastery_after": 0.5
+    },
+    {
+      "status": "correct",
+      "score": 1,
+      "mastery_after": 0.6
+    }
+  ],
+  "mastery": 0.6,
+  "next_difficulty": "medium",
+  "revision_reason": "Source-recall estimate 60% from 3 objectively graded answers; weaker tracked topics are prioritized.",
+  "revision_question": "Help me revise energy. My source-recall practice level is medium. Explain the key ideas using only the selected material, and mention prerequisites only if the sources explicitly state them.",
+  "pdf_preview_verified": true,
+  "fresh_process_restart_verified": true,
+  "real_inference_requested": false,
+  "elapsed_seconds": 2.422
+}

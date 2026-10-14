@@ -12,6 +12,15 @@ also produced with Codex assistance. Deterministic test doubles are used only
 in tests; the application never replaces failed inference with mocked answers.
 No visual understanding or measured learning improvements are claimed.
 
+Milestone 3 adds deterministic source-cloze assessments, persistent learner data,
+transparent recall estimates and learner-aware revision prompts. Its code, tests,
+documentation and synthetic learner evaluation were produced with Codex assistance.
+No LLM generates or grades the assessment answer keys. The recorded real revision
+answer uses the existing local Qwen3 provider. The learner response patterns and
+educational examples in `evaluation/learning_profiles.json` and
+`scripts/evaluate_learning.py` are original synthetic fixtures dedicated to CC0;
+their changing estimates are not real-student learning-outcome measurements.
+
 Original educational fixtures are described in `demo_assets/README.md` and dedicated
 to CC0. Third-party software is installed as dependencies, not vendored:
 

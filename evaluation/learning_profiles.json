@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "description": "Scripted response sequences for software behavior, not simulated cognitive learning or real-student gains.",
+  "questions_per_session": 3,
+  "formats": ["mcq", "numerical"],
+  "topic_order": ["kinetic energy", "power", "potential energy"],
+  "rounds": 3,
+  "source_examples_per_topic": 12,
+  "profiles": [
+    {"name": "Beginner", "responses": ["000", "100", "100", "100", "100", "110", "110", "110", "111"]},
+    {"name": "Intermediate", "responses": ["110", "100", "110", "110", "111", "110", "100", "111", "111"]},
+    {"name": "Advanced", "responses": ["111", "111", "110", "111", "111", "111", "111", "111", "111"]}
+  ]
+}

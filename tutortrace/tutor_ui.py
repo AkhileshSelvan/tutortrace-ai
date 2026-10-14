@@ -29,6 +29,7 @@ def tutor_panel(store, documents):
         (st.success if status.available else st.warning)(status.message)
     with st.form("tutor_form"):
         scope = st.multiselect("Tutor documents / course", [doc.id for doc in documents],
+                               key="tutor_scope",
                                format_func=lambda value: next(f"{doc.filename} · {doc.id[:10]}" for doc in documents if doc.id == value),
                                help="Choose several documents as a course. Empty selection searches all documents.")
         question = st.text_area("Student question", max_chars=1000, placeholder="How do kinetic energy and power differ?", key="tutor_question")

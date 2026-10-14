@@ -1,4 +1,4 @@
-# Known limitations — Milestone 2
+# Known limitations — Milestone 3
 
 - PDF/PPTX text only. No video/audio, OCR, vision models, image/diagram interpretation,
   embedded chart semantics, PPTX speaker notes or animation semantics. Scanned PDFs
@@ -56,9 +56,37 @@
 - The remote OpenAI-compatible adapter is contract-tested with synthetic responses;
   no live remote provider was tested with credentials. API variations may require
   adapter changes. Remote use sends selected excerpts and the question to that service.
-- Chat answers are session-local and are not a persistent conversation or learner
-  model. No quizzes, mastery tracking, adaptive personalization, learning-outcome
-  measurements or independent external benchmark is implemented.
+- Chat answers remain session-local. Learner profiles, assessments, objective
+  grades, review signals and topic estimates now persist separately. There is no
+  persistent conversational memory or independent external learning benchmark.
+- Assessments are deterministic source-cloze recall exercises. Numerical items
+  recall a stated value; they do not verify source arithmetic or generate new
+  calculation problems. Distractors can be easy to distinguish. Topic matching
+  and sentence segmentation are bounded lexical heuristics, principally for
+  English prose, rather than broad semantic question generation.
+- Short-answer paraphrases receive `needs_review` and no mastery change. There is
+  no subjective grader or teacher adjudication interface. A verified key means the
+  key matches the source transformation, not that the source is true or that the
+  student understands the concept. Practice is open-book.
+- Mastery is an uncalibrated Beta(1,1) estimate of source-recall success. It does not
+  model guessing, forgetting, item discrimination or different difficulty weights.
+  Difficulty changes scaffolding; no psychometric validation is claimed. Review
+  signals record mismatches, not established cognitive misconceptions.
+- Recommendations cover tracked topic/course combinations only. Explicit
+  prerequisite wording is recognized in a small set of source patterns; there is
+  no inferred curriculum graph. Topic/course names and labels are student-selected.
+  A changed document selection creates separate progress even for the same label.
+- Question generation uses at most 12 passages / 12,000 characters. The last two
+  issued quizzes' facts are withheld, including abandoned quizzes. Small corpora
+  can exhaust the pool; withheld facts are not reused to fill the gap. Content
+  duplicated across different documents can still be conceptually repetitive.
+- Learner state and source data are separate SQLite files. Back up both. Source
+  re-indexing or generator changes can retire cached questions; old grades remain
+  but stale citations are flagged. There is no historical source-chunk archive or
+  distributed transaction spanning both databases.
+- The personalization evaluation uses prescribed simulated responses. Completion,
+  repetition, recommendation and estimate changes test software behavior; they
+  demonstrate no real-student learning gains or calibrated model quality.
 - No accounts, auth, encryption at rest, deletion UI, backups UI, or multi-tenant
   security. Use only as a loopback/local app. The database includes original uploads.
 - Parsing is synchronous. PDFs use separate processes with a 60-second timeout;
@@ -81,10 +109,12 @@
   current pipeline. There is no bulk re-index UI. Successful re-indexing retires
   previous chunk IDs; document IDs and physical locations remain stable. Ordinary
   same-version duplicates do not repair damaged evidence.
-- Tests cover the local library and Streamlit application harness. Native browser
-  file selection/download interaction and visual layout require a manual review.
+- Tests cover the local library, learner transactions and Streamlit application
+  harness. A live-browser sample-course quiz was also exercised. Native file
+  selection and download behavior across different browsers still need broader review.
 - PyMuPDF has AGPL/commercial license terms. No repository-wide distribution license
   has been chosen here; dependency licensing must be reviewed before distribution.
 
-See `MILESTONE_2_VERIFICATION.md` for current checks and measurements, and the
-Milestone 1 verification documents for historical baselines.
+See `MILESTONE_3_VERIFICATION.md` for current checks, `LEARNING_MODEL.md` for the
+assessment/estimate contract, and the earlier milestone verification documents
+for historical baselines.

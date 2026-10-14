@@ -2,13 +2,14 @@
 
 Track D — Personalized Tutoring & Adaptive Learning, Multimodal AI Hackathon 2026.
 
-**Milestone 2:** a PDF/PPTX evidence library and source-grounded AI tutor. Upload educational materials,
+**Milestone 3:** a PDF/PPTX evidence library, source-grounded AI tutor, and persistent adaptive recall practice. Upload educational materials,
 search extracted text, inspect exact page/slide citations, preview PDF pages,
 download the byte-identical original, and ask a configured model questions about
 selected documents. Retrieval alone needs no model or API key. Local AI uses
 Ollama; remote inference requires separately supplied API credentials.
-Assessments, mastery tracking, video ingestion and visual understanding remain
-future milestones.
+Create a learner profile, complete a source-derived diagnostic quiz, review cited
+answers, track topic estimates, and prepare personalized AI revision. Video
+ingestion and visual understanding remain future milestones.
 
 ## Install and run (Windows PowerShell, Python 3.11)
 
@@ -68,6 +69,60 @@ Semantic retrieval is opt-in. It combines keyword and embedding ranks, suppresse
 redundant windows, and respects the selected documents and context limits. Its
 separate local embedding cache is ignored by Git; the source database stays at
 schema 2. If embeddings fail, the UI explicitly reports keyword-only fallback.
+
+## Adaptive practice
+
+1. In **Adaptive practice**, create a local learner profile. Profiles separate
+   progress but are **not authenticated accounts**.
+2. Select a document/course, enter topic keywords appearing together in the source
+   (for example `energy`), choose formats and a difficulty, and generate a quiz.
+3. The first objectively graded practice in each topic/course is diagnostic.
+   **Adaptive** starts easy; a manually selected level overrides this choice.
+4. Answer the multiple-choice, exact-wording short-answer, or numerical recall
+   questions, then select **Grade assessment**. Expand each answer for its key,
+   supporting statement, physical page/slide and original source.
+5. Inspect the topic dashboard, revision priorities and learning history/chart.
+   **Revise with AI tutor** prepares a question and selects the matching documents;
+   **Ask AI tutor** runs the configured model. Explicitly stated prerequisites are
+   shown when the source contains them; other relationships are not inferred.
+6. Restart the app and select the same learner. Unfinished quizzes, submissions,
+   estimates, and previous answer reviews are retained.
+
+Assessment generation and grading are deterministic, with **no model call**.
+These are source-cloze **recall** exercises, not unrestricted LLM-generated
+questions or a validated measure of understanding. Numerical questions recall a
+stated value; they do not independently verify the source's calculation. Every
+question and key is rebuilt from provenance-checked source text before use.
+An unsupported or stale question fails closed. Short answers with different
+wording receive **needs review**, not an assumed semantic grade.
+
+The transparent estimate is `(1 + correct) / (2 + correct + incorrect)`, a
+Beta(1,1) count model of source-recall success. New topics start at 50% **unknown**.
+Unverified short answers do not update it. This is not calibrated knowledge
+probability or Bayesian Knowledge Tracing. Adaptive levels change the number of
+MCQ options, missing text length, or numerical hints; they are not psychometrically
+calibrated. Recent facts from the last two issued quizzes are excluded, including
+abandoned quizzes. Unseen facts are preferred; limited material may yield fewer
+questions or explicit exhaustion. Practice is open-book.
+
+Learner data uses `data/tutortrace.learning.sqlite3` (schema 1), separate from the
+unchanged source ledger (schema 2). Keep **both** databases when backing up or
+moving the course and its progress. Re-indexing can retire old chunk IDs;
+historical grades remain, but a retired citation is flagged instead of silently
+rebound to different evidence. See the [learning architecture](docs/LEARNING_MODEL.md).
+
+Reproduce the assessment evaluation and complete restart smoke test:
+
+```powershell
+.\.venv\Scripts\python.exe -m scripts.evaluate_learning
+.\.venv\Scripts\python.exe -m scripts.learning_smoke
+# Optional: one bounded real-model revision call; requires installed/running Ollama.
+.\.venv\Scripts\python.exe -m scripts.learning_smoke --real-model --output docs/evaluation/m3-real-revision.json
+```
+
+The three scripted learners completed 27/27 quizzes and 81/81 answers with 0/81
+repeated facts in the recorded run. Their prescribed answer patterns test software
+behavior; changing estimates are **not evidence of real-student learning gains**.
 
 Configuration is through shell environment variables; `.env.example` is a reference,
 not an automatically loaded configuration file. To select an existing local model:
@@ -152,6 +207,8 @@ local databases, credentials and environments are excluded from source control.
 - [Verification record and review handoff](docs/MILESTONE_1_VERIFICATION.md)
 - [Milestone 1 audit fixes and verification](docs/MILESTONE_1_AUDIT_FIX_VERIFICATION.md)
 - [Milestone 2 verification and evaluation](docs/MILESTONE_2_VERIFICATION.md)
+- [Milestone 3 verification and evaluation](docs/MILESTONE_3_VERIFICATION.md)
+- [Assessment verification and learner model](docs/LEARNING_MODEL.md)
 - [AI assistance and third-party attribution](docs/AI_DISCLOSURE.md)
 - [Sample material provenance](demo_assets/README.md)
 - [Original project blueprint](docs/TutorTrace_AI_First_Place_Blueprint.md)

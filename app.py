@@ -11,6 +11,7 @@ from tutortrace.ingestion.service import ingest
 from tutortrace.persistence import Store
 from tutortrace.retrieval.search import search
 from tutortrace.tutor_ui import tutor_panel
+from tutortrace.learning_ui import learning_panel
 
 ROOT = Path(__file__).resolve().parent
 
@@ -39,7 +40,7 @@ def main():
     st.set_page_config(page_title="TutorTrace AI · Evidence library", page_icon="📚", layout="wide")
     st.title("TutorTrace AI")
     st.write("Find evidence in your learning materials, with its original page or slide.")
-    st.caption("Document library · Evidence search · Source-grounded AI tutor")
+    st.caption("Document library · Evidence search · Adaptive practice · Source-grounded AI tutor")
     data_dir = Path(os.environ.get("TUTORTRACE_DATA_DIR", str(ROOT / "data")))
     if not data_dir.is_absolute():
         data_dir = ROOT / data_dir
@@ -133,6 +134,7 @@ def main():
                              hide_index=True, width="stretch")
             else:
                 st.caption("No ingestion attempts recorded yet.")
+        learning_panel(store, documents)
         tutor_panel(store, documents)
     except TutorTraceError as exc:
         st.error(str(exc))

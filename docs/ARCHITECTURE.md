@@ -1,4 +1,4 @@
-# TutorTrace architecture — Milestone 2
+# TutorTrace architecture — Milestone 3
 
 The smallest viable design is a local Streamlit process plus SQLite and short-lived
 PDF worker processes. No
@@ -17,6 +17,11 @@ Streamlit app.py
 AI Tutor → retrieval.context → selected Evidence → AnswerProvider.complete
          → tutoring.validate_answer → claims with canonical source metadata
 Optional semantic retrieval → local Ollama embeddings → disposable SQLite cache
+
+Adaptive practice → retrieval.context → assessment.question_pool / verify_question
+                  → learning.LearningStore → learner SQLite sidecar
+                  → deterministic grades + atomic mastery/history update
+Revision priorities → verified Evidence + learner-aware prompt → existing AI Tutor
 ```
 
 ## Module responsibilities
@@ -37,6 +42,9 @@ Optional semantic retrieval → local Ollama embeddings → disposable SQLite ca
 | `retrieval/context.py` | Scoped retrieval, optional local embeddings, reciprocal-rank fusion, deduplication and context limits |
 | `tutoring.py` | Question orchestration, structured output, per-claim citation and exact-quote validation |
 | `tutor_ui.py` | Provider status, questions, explicit answer/abstention/error states and source inspection |
+| `assessment.py` | Source-derived cloze questions, full key/stem verification and deterministic grading |
+| `learning.py` | Learners, course/topic identity, cached questions, atomic sessions/attempts, estimates and revision |
+| `learning_ui.py` | Diagnostic/practice quizzes, cited reviews, mastery dashboard, history/chart and tutor handoff |
 | `app.py` | Uploads, status, library, retrieval, provenance and original inspection |
 
 Standard-library dataclasses avoid adding Pydantic solely for internal records.
@@ -186,3 +194,23 @@ and [PyMuPDF text extraction](https://pymupdf.readthedocs.io/en/latest/app1.html
 are checked for at most 10,000 entries and 200 MiB declared expanded size before
 parsing. PDFs also have a 60-second processing timeout. These bounds help a local
 demo but do not replace a full sandbox or process-level memory limits for public deployment.
+
+## Persistent adaptive practice
+
+The learner sidecar has its own transactional `PRAGMA user_version=1` bootstrap;
+the source schema, FTS index, extraction pipeline and tutor contracts are unchanged.
+Question records reference immutable chunk IDs. Every issued/graded question is
+reconstructed from the current canonical evidence and compared in full, including
+its prompt, key, options, offsets, difficulty and deterministic ID. This is stronger
+than accepting a model-supplied key with a valid citation. It verifies a bounded
+source transformation, not the scientific truth of the original source.
+
+Each grading transaction validates all responses before appending attempts,
+updating topic counters and closing the session. SQLite rollback covers all three.
+An ownership check and a unique open-session index prevent cross-profile grading
+and concurrent duplicate assessments. Question identity is checked against both
+the bank and assignment records. The source database is independently read-only
+during practice; there is no distributed transaction between the two files.
+
+See [LEARNING_MODEL.md](LEARNING_MODEL.md) for formulas, thresholds, diagnostic
+behavior, cache invalidation, repetition policy and precise grading limitations.
